@@ -2,7 +2,7 @@
 
 function DbConnect()
 {
-    $conexion=mysqli_connect("localhost", "root", "root12345","macfilter");
+    $conexion=mysqli_connect("localhost", "root", "root","macfilter");
     mysqli_set_charset($conexion,'utf8');
     return $conexion;
 }

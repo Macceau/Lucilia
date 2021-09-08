@@ -27,11 +27,12 @@ $link=DbConnect();
                 $itemnumber=addslashes($_POST['itemnumber']);
                 $partnumber=addslashes($_POST['partnumber']);
                 $partdescription=addslashes($_POST['partdescription']);
+                $price=Decimal($_POST['price']);
                 $printer=addslashes($_POST['printer']);
                 $itemdescription=addslashes($_POST['itemdescription']);
               $sql="update items set item_number='$itemnumber',item_desc='$itemdescription',
               part_number='$partnumber',part_description='$partdescription',
-              printer_model='$printer' where id=$id";
+              printer_model='$printer',price='$price' where id=$id";
               $res=SendQuery($sql,$link);
               if(!$res){
                 echo"bad"; 
@@ -43,11 +44,12 @@ $link=DbConnect();
                 $itemnumber=addslashes($_POST['itemnumber']);
                 $partnumber=addslashes($_POST['partnumber']);
                 $partdescription=addslashes($_POST['partdescription']);
+                $price=Decimal($_POST['price']);
                 $printer=addslashes($_POST['printer']);
                 $itemdescription=addslashes($_POST['itemdescription']);
               $sql="update items set item_number='$itemnumber',item_desc='$itemdescription',
               part_number='$partnumber',part_description='$partdescription',
-              printer_model='$printer' where id=$id";
+              printer_model='$printer',price='$price' where id=$id";
               $res=SendQuery($sql,$link);
               if(!$res){
                 echo"bad"; 

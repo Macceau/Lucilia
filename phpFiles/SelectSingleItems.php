@@ -2,7 +2,7 @@
  include('../lib/Classe.php');
  $link=DbConnect();
  $param=$_POST['id'];
- $sql="SELECT i.id,i.item_number,i.item_desc,i.part_number,i.part_description AS part_desc,
+ $sql="SELECT i.id,i.item_number,i.item_desc,i.price,i.part_number,i.part_description AS part_desc,
  d.device AS printer_model,i.photo_link FROM items i
  LEFT JOIN devices d ON d.id=i.printer_model where i.id=$param";
      $res=SendQuery($sql,$link);
@@ -15,6 +15,7 @@
              'id'=>$row["id"],
              'item'=>$row["item_number"],
              'itemdesc'=>$row["item_desc"],
+             'price'=>Decimal($row["price"]),
              'part'=>$row["part_number"],
              'partdesc'=>$row["part_desc"],
              'printer'=>$row["printer_model"],

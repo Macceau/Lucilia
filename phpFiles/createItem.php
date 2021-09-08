@@ -25,23 +25,25 @@ $link=DbConnect();
                             $itemnumber=addslashes($_POST['itemnumber']);
                             $partnumber=addslashes($_POST['partnumber']);
                             $partdescription=addslashes($_POST['partdescription']);
+                            $price=Decimal($_POST['price']);
                             $printer=addslashes($_POST['printer']);
                             $itemdescription=addslashes($_POST['itemdescription']);
                             $partimage=addslashes($targetPath);
-                        $sql="insert into items(item_number,item_desc,part_number,part_description,printer_model,photo_link)
-                        values('$itemnumber','$itemdescription','$partnumber','$partdescription','$printer','$partimage')";
+                        $sql="insert into items(item_number,item_desc,price,part_number,part_description,printer_model,photo_link)
+                        values('$itemnumber','$itemdescription','$price','$partnumber','$partdescription','$printer','$partimage')";
                         $res=SendQuery($sql,$link);
                         echo "good";
                 }else{
                         $itemnumber=addslashes($_POST['itemnumber']);
                         $partnumber=addslashes($_POST['partnumber']);
                         $partdescription=addslashes($_POST['partdescription']);
+                        $price=Decimal($_POST['price']);
                         $printer=addslashes($_POST['printer']);
                         $itemdescription=addslashes($_POST['itemdescription']);
                         $maxcode=BringMaxCode("items","id",$link);
                         $partimage=SearchCode("photo_link","id",$maxcode,"items",$link);
-                    $sql="insert into items(item_number,item_desc,part_number,part_description,printer_model,photo_link)
-                    values('$itemnumber','$itemdescription','$partnumber','$partdescription','$printer','$partimage')";
+                    $sql="insert into items(item_number,item_desc,price,part_number,part_description,printer_model,photo_link)
+                    values('$itemnumber','$itemdescription','$price','$partnumber','$partdescription','$printer','$partimage')";
                     $res=SendQuery($sql,$link);
 
                     echo "good";
