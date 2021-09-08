@@ -111,6 +111,7 @@ $(document).ready(function(e){
                 <tr class="tr-shadow" taskid="${rep.id}">
                 <td>${rep.item}</td>
                 <td>${rep.itemdesc}</td>
+                <td>${rep.price}</td>
                 <td>${rep.partdesc}</td>
                 <td>${rep.part}</td>
                 <td>${rep.printer}</td>
@@ -160,13 +161,18 @@ $(document).ready(function(e){
         let element=$(this)[0].parentElement.parentElement.parentElement;
        let id= $(element).attr('taskid');
        $.post('phpFiles/SelectSingleItems.php', {id} , function(response){
+         let template='';
           const repons=JSON.parse(response);
+          template=`
+            <option value="${repons.code}">${repons.printer}</option>
+          `
           $('#hiddenparam').val(repons.id);
           $('#itemnumber').val(repons.item);
           $('#itemdescription').val(repons.itemdesc);
+          $('#price').val(repons.price);
           $('#partnumber').val(repons.part);
           $('#partdescription').val(repons.partdesc);
-          $('#printer').val(repons.printer);
+          $('#printer').html(template);
           edition=true;
         });
          e.preventDefault();
@@ -210,6 +216,7 @@ $(document).ready(function(e){
                   <tr class="tr-shadow" taskid="${rep.id}">
                       <td>${rep.item}</td>
                       <td>${rep.itemdesc}</td>
+                      <td>${rep.price}</td>
                       <td>${rep.partdesc}</td>
                       <td>${rep.part}</td>
                       <td>${rep.printer}</td>
