@@ -3,12 +3,12 @@ $(document).ready(function(e){
     setInterval(function(){
         Push.Permission.request();
         $('#inputIsValid').hide(); $('#inputIsInvalid').hide(); $('#errorinputIsValid').hide(); $('#errorinputIsInvalid').hide(); 
-        	
+        $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide();	
       },1000);
      //-------------------------------fin----------------------------------------
      $('#inputIsValid').hide();$('#inputIsInvalid').hide();$('#tblerrors').hide();$('#tblitems').hide();FullPrinter();$('#avis').hide();
      let edition=false; $('#errorinputIsValid').hide();$('#errorinputIsInvalid').hide(); let editions=false;FullItem();FullInventaryGrid();
-
+     $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide();
      //-------------------------------fin----------------------------------------
     function FullPrinter(){
         $.ajax({
@@ -400,16 +400,21 @@ $(document).ready(function(e){
         let datos={
             item:$('#itemnumbers').val(),
             quantity:$('#quantity').val(),
+            subinventary:$('#subinventary').val(),
+            sigle:$('#sigle').val(),
+            locator:$('#locator').val(),
         };
        $.post('phpFiles/addInventary.php', datos, function(response){
          // console.log(response);
           if(response==="good"){
-            $('#inputIsValid').show();
+            $('#inputIsValidinventary').show();
+            FullInventaryGrid();
            }else if(response==="bad"){
-            $('#nputIsInvalid').show();
+            $('#nputIsInvalidinventary').show();
            }else{
-            $('#inputIsValid').show(); 
+            $('#inputIsValidinventary').show(); 
            }
+
            $('#addinventary').trigger('reset');
         });
          e.preventDefault();
@@ -430,12 +435,17 @@ $(document).ready(function(e){
                      <td>${rep.item}</td>
                         <td>${rep.itemdesc}</td>
                           <td>${rep.printer}</td>
-                          <td><input type="text"  value="${rep.qty}" id="cant${rep.id}" name="cant${rep.id}"  style="width:80px;background-color:rgb(255, 244, 143);text-align:center;"></td>
+                          <td>${rep.sub}</td>
+                          <td>${rep.sigle}</td>
+                          <td>${rep.locator}</td>
+                          <td><input type="text"  value="${rep.qty}" id="cant${rep.id}" name="cant${rep.id}"  
+                          style="width:80px;background-color:rgb(255, 244, 143);text-align:center;"></td>
                         <td>${rep.status}</td>
                     <td>
                       <div class="table-data-feature">
-                          <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
-                            <i class="zmdi zmdi-camera"></i>
+                          <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" 
+                              data-placement="top" title="View Picture">
+                              <i class="zmdi zmdi-camera"></i>
                           </button>
                           <button class="item" id="updateinventary" data-toggle="tooltip" data-placement="top" title="Update Quantity">
                               <i class="zmdi zmdi-check"></i>
@@ -467,6 +477,9 @@ $(document).ready(function(e){
                 <td>${rep.item}</td>
                    <td>${rep.itemdesc}</td>
                      <td>${rep.printer}</td>
+                     <td>${rep.sub}</td>
+                     <td>${rep.sigle}</td>
+                     <td>${rep.locator}</td>
                      <td><input type="text"  value="${rep.qty}" id="cant${rep.id}" name="cant${rep.id}"  style="width:80px;background-color:rgb(255, 244, 143);text-align:center;"></td>
                    <td>${rep.status}</td>
                <td>
