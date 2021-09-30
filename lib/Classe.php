@@ -97,8 +97,14 @@ function Decrypt($str)
 }
 
 function Decimal($number){
-  $format= number_format($number, 2, '.', '');
-  return $format;
+  if($number==null){
+    $number=0;
+    $format= number_format($number, 2, '.', '');
+    return $format;
+  }else{
+    $format= number_format($number, 2, '.', '');
+    return $format;
+  }
 }
 
 function Validate_Email($str)
