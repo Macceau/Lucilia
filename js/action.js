@@ -537,5 +537,10 @@ $(document).ready(function(e){
         
         });
       });
+
+      $(document).on('click','#refreshmodal', function(e){
+        FullItem();
+        $('#addinventary').trigger('reset');
+      });
     
 });
