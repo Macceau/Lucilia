@@ -58,7 +58,7 @@
         <!-- END HEADER DESKTOP -->
 
         <!-- WELCOME-->
-        <section class="welcome2  p-b-55 " style="background-color: rgb(250, 103, 103); padding: 15px;">
+        <section class="welcome2  m-t-100 " style="background-color: rgb(250, 103, 103); padding: 15px;">
             <div class="row"></div>
             <!-- MODALS-->
                  <!-- modal large -->
@@ -236,6 +236,64 @@
 </div>
 <!-- end modal large -->
 
+ <!-- modal medium -->
+ <div class="modal fade" id="mediumModals" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediumModalLabel">Update Quantity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                        <p>
+                            <form action="" method="post" class=""  id="updateinventaryfrm" >
+                                <div class="row form-group">
+                                    <div class="col col-md-6">
+                                        <label for="nf-email" class=" form-control-label">Action</label>
+                                        <select name="action" id="action" class="form-control">
+                                            <option value="">Select an Option...</option>
+                                            <option value="Add Quantity">Add Quantity</option>
+                                            <option value="Reduce Quantity">Reduce Quantity</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-6">
+                                        <label for="nf-email" class=" form-control-label">Item Number</label>
+                                        <input type="text" name="itemnum" id="itemnum" class="form-control" readonly>
+                                        <input type="text" name="itemid" id="itemid" class="form-control" hidden>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <label for="nf-email" class=" form-control-label">Item Description</label>
+                                        <input type="text" name="itemdes" id="itemdes" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-6">
+                                        <label for="nf-email" class=" form-control-label">Actual Quantity</label>
+                                        <input type="text" name="actual" id="actual"  class="form-control" readonly>
+                                        <input type="text" name="actualqty" id="actualqty"  class="form-control" hidden>
+                                    </div>
+                                    <div class="col col-md-6">
+                                        <div id="showlabel"></div>
+                                        <input type="text" name="newquantity" id="newquantity"  class="form-control" placeholder="0">
+                                    </div>
+                                </div>
+                            </form>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" name="updateinventary" id="updateinventary">Update</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end modal medium -->
+
             <!-- MODALS-->
         </section>
         <!-- END WELCOME-->
@@ -261,7 +319,7 @@
                                             </form>
                                             </div>
                                             <div class="table-data__tool-right">
-                                                <button class="btn btn-success"  data-toggle="modal" data-target="#largeModall"><i class="zmdi zmdi-plus"></i> ADD ITEM</button>
+                                                <button class="au-btn au-btn-icon au-btn--green au-btn--small"  data-toggle="modal" data-target="#largeModall"><i class="zmdi zmdi-plus"></i> ADD ITEM</button>
                                                 <button class="au-btn au-btn-icon au-btn--blue au-btn--small " data-toggle="modal" data-target="#largeModal">
                                                     <i class="zmdi zmdi-plus"></i>Add Item To Inventary</button>
                                                 <a href="phpFiles/Export.php" target="_blank"><button class="au-btn au-btn-icon  au-btn--small" style="background-color: orangered;" id="export_file">
