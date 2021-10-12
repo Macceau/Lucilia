@@ -9,6 +9,7 @@ $(document).ready(function(e){
      $('#inputIsValid').hide();$('#inputIsInvalid').hide();$('#tblerrors').hide();$('#tblitems').hide();FullPrinter();$('#avis').hide();
      let edition=false; $('#errorinputIsValid').hide();$('#errorinputIsInvalid').hide(); let editions=false;FullItem();FullInventaryGrid();
      $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide();
+     let edit=false;
      //-------------------------------fin----------------------------------------
     function FullPrinter(){
         $.ajax({
@@ -403,8 +404,10 @@ $(document).ready(function(e){
             subinventary:$('#subinventary').val(),
             sigle:$('#sigle').val(),
             locator:$('#locator').val(),
+            id:$('#iditems').val(),
         };
-       $.post('phpFiles/addInventary.php', datos, function(response){
+        let url=edit===false ? 'phpFiles/addInventary.php' : 'phpFiles/editInventary.php';
+       $.post(url, datos, function(response){
          // console.log(response);
           if(response==="good"){
             $('#inputIsValidinventary').show();
@@ -414,7 +417,7 @@ $(document).ready(function(e){
            }else{
             $('#inputIsValidinventary').show(); 
            }
-
+           edit=true;
            $('#addinventary').trigger('reset');
         });
          e.preventDefault();
@@ -438,18 +441,21 @@ $(document).ready(function(e){
                           <td>${rep.sub}</td>
                           <td>${rep.sigle}</td>
                           <td>${rep.locator}</td>
-                          <td><input type="text"  value="${rep.qty}" id="cant${rep.id}" name="cant${rep.id}"  
-                          style="width:80px;background-color:rgb(255, 244, 143);text-align:center;"></td>
-                        <td>${rep.status}</td>
+                          <td style="text-align:center;"><b>${rep.qty}</b></td>
                     <td>
                       <div class="table-data-feature">
                           <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" 
                               data-placement="top" title="View Picture">
                               <i class="zmdi zmdi-camera"></i>
                           </button>
-                          <button class="item" id="updateinventary" data-toggle="tooltip" data-placement="top" title="Update Quantity">
-                              <i class="zmdi zmdi-check"></i>
-                          </button>
+                        <button class="item" id="largeModal" data-toggle="modal" data-target="#largeModal" data-toggle="tooltip" 
+                          data-placement="top" title="Modify Inventary">
+                         <i class="zmdi zmdi-edit"></i>
+                       </button>
+                     <button class="item" id="showquantity" data-toggle="modal" data-target="#mediumModals" data-toggle="tooltip" 
+                     data-placement="top" title="Update Quantity">
+                         <i class="zmdi zmdi-refresh"></i>
+                     </button>
                       </div>
                     </td>
                   </tr> 
@@ -480,15 +486,21 @@ $(document).ready(function(e){
                      <td>${rep.sub}</td>
                      <td>${rep.sigle}</td>
                      <td>${rep.locator}</td>
-                     <td><input type="text"  value="${rep.qty}" id="cant${rep.id}" name="cant${rep.id}"  style="width:80px;background-color:rgb(255, 244, 143);text-align:center;"></td>
-                   <td>${rep.status}</td>
+                     <td style="text-align:center;"><b>${rep.qty}</b></td>
                <td>
                  <div class="table-data-feature">
-                     <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                     <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" 
+                     data-placement="top" title="View Picture">
                        <i class="zmdi zmdi-camera"></i>
                      </button>
-                     <button class="item" id="updateinventary" data-toggle="tooltip" data-placement="top" title="Update Quantity">
-                         <i class="zmdi zmdi-check"></i>
+                     </button>
+                     <button class="item" id="largeModal" data-toggle="modal" data-target="#largeModal" data-toggle="tooltip" 
+                     data-placement="top" title="Modify Inventary">
+                         <i class="zmdi zmdi-edit"></i>
+                     </button>
+                     <button class="item" id="showquantity" data-toggle="modal" data-target="#mediumModals" data-toggle="tooltip" 
+                     data-placement="top" title="Update Quantity">
+                         <i class="zmdi zmdi-refresh"></i>
                      </button>
                  </div>
                </td>
@@ -500,17 +512,58 @@ $(document).ready(function(e){
          e.preventDefault();
       
       });
+
+      $(document).on('click','#showquantity', function(e){
+        let element=$(this)[0].parentElement.parentElement.parentElement;
+       let id= $(element).attr('taskid');
+       $.post('phpFiles/SelectSingleInventary.php', {id} , function(response){
+        
+       let repons=JSON.parse(response);
+            $('#itemnum').val(repons.item);
+            $('#itemid').val(repons.id);
+            $('#itemdes').val(repons.itemdesc);
+            $('#actual').val(repons.qty);
+            $('#actualqty').val(repons.qty);
+        });
+         e.preventDefault();
+      
+      });
+
+      $(document).on('click','#largeModal', function(e){
+        let element=$(this)[0].parentElement.parentElement.parentElement;
+       let id= $(element).attr('taskid');
+       $.post('phpFiles/SelectEditInventary.php', {id} , function(response){
+        console.log(response);
+            let repons=JSON.parse(response);
+            let template=`<option value="${repons.iditem}">${repons.item}</option>`
+            $('#itemnumbers').html(template);
+            $('#iditems').val(repons.id);
+            $('#partdescs').val(repons.partdesc);
+            $('#itemdescs').val(repons.itemdesc);
+            $('#quantity').val(repons.qty);
+            $('#subinventary').val(repons.sub);
+            $('#sigle').val(repons.sigle);
+            $('#locator').val(repons.locator);
+            edit=true;
+        });
+         e.preventDefault();
+      
+      });
        
       
       $(document).on('click','#updateinventary', function(e){
-        let element=$(this)[0].parentElement.parentElement.parentElement;
-       let id= $(element).attr('taskitem'); let iden="#cant"+id;
-       let inputField= $(iden).val(); 
-       $.post('phpFiles/UpdateInventary.php?param='+inputField, {id} , function(response){
+        let datos={
+          itemid:$('#itemid').val(),
+          actualqty:$('#actualqty').val(),
+          newqty:$('#newquantity').val(),
+          action:$('#action').val(),
+       };
+       $.post('phpFiles/UpdateInventary.php', datos , function(response){
        // console.log(response);
           if(response==="good"){
             alert("The Quantity as been updated with success.");
           }
+          $('#updateinventaryfrm').trigger('reset');
           FullInventaryGrid();
         });
          e.preventDefault();
@@ -541,6 +594,18 @@ $(document).ready(function(e){
       $(document).on('click','#refreshmodal', function(e){
         FullItem();
         $('#addinventary').trigger('reset');
+      });
+
+      $(document).on('change','#action', function(e){
+        let param=$('#action').val();
+        let rezilta;
+        if(param===""){
+          rezilta="Action";
+        }else{
+          rezilta=param;
+        }
+        let template=`<label for="nf-email" class=" form-control-label">${rezilta}</label>`
+        $('#showlabel').html(template);
       });
     
 });

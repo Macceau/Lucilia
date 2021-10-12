@@ -3,7 +3,7 @@
  $link=DbConnect();
  $param=$_POST['id'];
  $sql="SELECT i.id,i.item_number,i.item_desc,i.price,i.part_number,i.part_description AS part_desc,
- d.device AS printer_model,i.photo_link FROM items i
+ d.device AS printer_model,i.photo_link,d.id as code FROM items i
  LEFT JOIN devices d ON d.id=i.printer_model where i.id=$param";
      $res=SendQuery($sql,$link);
          if(!$res){
@@ -19,6 +19,7 @@
              'part'=>$row["part_number"],
              'partdesc'=>$row["part_desc"],
              'printer'=>$row["printer_model"],
+             'code'=>$row["code"],
              'link'=>$row["photo_link"]
          );
         }

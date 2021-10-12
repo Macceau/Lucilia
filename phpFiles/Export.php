@@ -30,16 +30,16 @@ include('../lib/Classe.php');
         for($i=0; $row=BringRow($res); $i++){
         ?>
             <tr>
-                <td><?php echo $row['item_number'];?></td>
-                <td><?php echo $row['item_desc'];?></td>
-                <td><?php echo $row['subinventary'];?></td>
-                <td><?php echo $row['sigle'];?></td>
-                <td><?php echo $row['locator'];?></td>
-                <td><?php echo $row['quantity'];?></td>
-                <td><?php echo $row['statut'];?></td>
-                <td><?php echo $row['part_description'];?></td>
-                <td><?php echo $row['part_number'];?></td>
-                <td><?php echo $row['printer_model'];?></td>
+                <td><?php echo addslashes($row['item_number']);?></td>
+                <td><?php echo addslashes($row['item_desc']);?></td>
+                <td><?php echo addslashes($row['subinventary']);?></td>
+                <td><?php echo addslashes($row['sigle']);?></td>
+                <td><?php echo addslashes($row['locator']);?></td>
+                <td><?php echo addslashes($row['quantity']);?></td>
+                <td><?php echo addslashes($row['statut']);?></td>
+                <td><?php echo addslashes($row['part_description']);?></td>
+                <td><?php echo addslashes($row['part_number']);?></td>
+                <td><?php echo addslashes($row['printer_model']);?></td>
             </tr>
     <?php
         }

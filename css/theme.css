@@ -2938,15 +2938,16 @@ section {
     -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 999;
-    background: rgb(4, 14, 151);
+    background: rgb(13, 76, 124);
+    width: 100%;
 }
 
 @media (max-width: 991px) {
     .header-desktop4 {
-        position: static;
+        position: fixed;
     }
 }
 
@@ -6352,6 +6353,7 @@ section {
     padding-top: 55px;
 }
 
+
 .p-r-55 {
     padding-right: 55px;
 }
@@ -6394,6 +6396,10 @@ section {
 
 .m-b-60 {
     margin-bottom: 60px;
+}
+
+.m-t-100 {
+    margin-top: 60px;
 }
 
 .m-t-60 {
@@ -6653,7 +6659,7 @@ section {
 }
 
 .m-t-100 {
-    margin-top: 100px;
+    margin-top: 92px;
 }
 
 .m-r-100 {
