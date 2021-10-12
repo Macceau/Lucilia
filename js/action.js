@@ -533,7 +533,7 @@ $(document).ready(function(e){
         let element=$(this)[0].parentElement.parentElement.parentElement;
        let id= $(element).attr('taskid');
        $.post('phpFiles/SelectEditInventary.php', {id} , function(response){
-        
+        console.log(response);
             let repons=JSON.parse(response);
             let template=`<option value="${repons.iditem}">${repons.item}</option>`
             $('#itemnumbers').html(template);
