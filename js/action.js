@@ -38,13 +38,18 @@ $(document).ready(function(e){
             success:function(html){
               let repons=JSON.parse(html);
               let template='';
+              let template1='';
               //console.log(repons);
               repons.forEach(rep=>{
                 template+=`
                  <option value="${rep.id}">${rep.item}  ${rep.itemdesc}</option>
                 `
+                template1=`
+                <span class="badge badge-light">${rep.qtyitem}</span> Items
+                `
               });
               $('#itemnumbers').html(template);
+              $('#countitem').html(template1);
             }
            });
       }
@@ -121,7 +126,7 @@ $(document).ready(function(e){
                         <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
                             <i class="zmdi zmdi-camera"></i>
                         </button>
-                        <button class="item" id="edititem" data-toggle="modal" data-target="#largeModal" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <button class="item" id="edititem" data-toggle="modal" data-target="#largeModalll" data-toggle="tooltip" data-placement="top" title="Edit">
                             <i class="zmdi zmdi-edit"></i>
                         </button>
                         <button class="item" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
@@ -226,7 +231,7 @@ $(document).ready(function(e){
                               <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
                                   <i class="zmdi zmdi-camera"></i>
                               </button>
-                              <button class="item" id="edititem" data-toggle="modal" data-target="#largeModal" data-toggle="tooltip" data-placement="top" title="Edit">
+                              <button class="item" id="edititem" data-toggle="modal" data-target="#largeModalll" data-toggle="tooltip" data-placement="top" title="Edit">
                                   <i class="zmdi zmdi-edit"></i>
                               </button>
                               <button class="item" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">

@@ -38,30 +38,70 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
-        <header class="header-desktop4">
-            <div class="container">
-                <div class="header4-wrap">
+        <header class="header-desktop4 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="index.html">
                             <img src="images/logo.png" alt="Lucilia" />
                         </a>
                     </div>
-                    <div class="header__tool">
-                        <div class="card-body">
-                            <button class="btn btn-success" id="additemforedit" data-toggle="modal" data-target="#largeModalll"><i class="zmdi zmdi-plus"></i> ADD ITEM</button>
-                            <button class="btn btn-danger" id="adderrorforedit" data-toggle="modal" data-target="#largeModals"><i class="zmdi zmdi-plus"></i> ADD ERROR</button>
-                            <a href="inventary.html"><button class="btn btn-primary"><i class="zmdi zmdi-plus"></i> CREATE INVENTARY</button></a>
-                        </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li >
+                                <a href="#" id="additemforedit" data-toggle="modal" data-target="#largeModalll">
+                                    <i class="fas fa-tag"></i>ADD ITEM
+                                    <span class="bot-line"></span>
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a href="#" id="adderrorforedit" data-toggle="modal" data-target="#largeModals">
+                                    <i class="fas fa-warning"></i>
+                                    <span class="bot-line"></span>ADD ERROR</a>
+                            </li>
+                            <li>
+                                <a href="inventary.html">
+                                    <i class="fas fa-clipboard"></i>
+                                    <span class="bot-line"></span>CREATE INVENTARY</a>
+                            </li>
+                            
+                        </ul>
                     </div>
+                    
                 </div>
             </div>
+            <hr>
+            <section class="section__content section__content--p35" style="background-color: rgb(105, 104, 105); padding-top: 20px;">
+                <div class="row"></div>
+            <div class="row">
+                <div class="table-data__tool">
+                    <div class="table-data__tool-left">
+                        <form action="" method="POST">
+                        <div class="rs-select2--light rs-select2--md">
+                            <select class="js-select2" name="property" id="property">
+                                <option selected="selected" value="Please Select">Please Select</option>
+                                <option value="Items">Items</option>
+                                <option value="Errors">Errors</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        <div class="rs-select2--light rs-select2--md">
+                            <select class="js-select2" name="printers" id="printers"></select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        <input class="au-input au-input--w435" type="text" name="search" id="search" placeholder="Search...">
+                    </form>
+                    </div>
+                    <button type="button" id="countitem" class="btn btn-warning m-l-10 m-b-10"></button>
+                </div>
+            </div>
+        </section>
         </header>
         <!-- END HEADER DESKTOP -->
 
         <!-- WELCOME-->
-        <section class="welcome2 m-t-100" style="background-color: rgb(250, 103, 103); padding: 15px;">
-            <div class="row"> 
-            </div>
+     
            <!-- MODALS-->
 
                                     <!-- modal large -->
@@ -205,11 +245,10 @@
                                     </div>
                                     <!-- end modal large -->
                                 <!-- END MODALS-->
-        </section>
         <!-- END WELCOME-->
 
         <!-- PAGE CONTENT-->
-        <div class="page-container3">
+        <div class="page-container3" style="margin-top: 150px;">
         
             <section>
                 <div class="container">
@@ -222,26 +261,13 @@
                                     <div class="col-md-12">
                                         <!-- DATA TABLE -->
                                         <h3 class="title-5 m-b-35"></h3>
-                                        <div class="table-data__tool">
-                                            <div class="table-data__tool-left">
-                                                <form action="" method="POST">
-                                                <div class="rs-select2--light rs-select2--md">
-                                                    <select class="js-select2" name="property" id="property">
-                                                        <option selected="selected" value="Please Select">Please Select</option>
-                                                        <option value="Items">Items</option>
-                                                        <option value="Errors">Errors</option>
-                                                    </select>
-                                                    <div class="dropDownSelect2"></div>
-                                                </div>
-                                                <div class="rs-select2--light rs-select2--md">
-                                                    <select class="js-select2" name="printers" id="printers"></select>
-                                                    <div class="dropDownSelect2"></div>
-                                                </div>
-                                                <input class="au-input au-input--w435" type="text" name="search" id="search" placeholder="Search...">
-                                            </form>
-                                            </div>
-                                            
-                                        </div>
+                                      
+
+
+
+
+
+
                                         <input type="text" id="avis" class="is-invalid form-control" value="Oups! Please choose an option in the first combo and continue write your search in the search textfield.">
                                         <div class="table-responsive table-responsive-data2" id="tblitems">
                                             <table class="table table-data2">

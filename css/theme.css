@@ -2941,7 +2941,7 @@ section {
     position: fixed;
     top: 0;
     z-index: 999;
-    background: rgb(13, 76, 124);
+    background: #393939;
     width: 100%;
 }
 

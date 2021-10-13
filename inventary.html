@@ -38,28 +38,62 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
-        <header class="header-desktop4">
-            <div class="container">
-                <div class="header4-wrap">
+        <header class="header-desktop4 d-none d-lg-block">
+            <div class="section__content section__content--p35">
+                <div class="header3-wrap">
                     <div class="header__logo">
                         <a href="index.html">
                             <img src="images/logo.png" alt="Lucilia" />
                         </a>
                     </div>
-                    <div class="header__tool">
-                        <div class="card-body">
-                            <button class="btn btn-warning" title="back to add an item or error" id="additemforedits">
-                                <i class="fa fa-mail-reply-all"></i> REGISTER PAGE</button>
-                        </div>
+                    <div class="header__navbar">
+                        <ul class="list-unstyled">
+                            <li >
+                                <a href="#" data-toggle="modal" data-target="#largeModall">
+                                    <i class="fas fa-tag"></i>ADD ITEM
+                                    <span class="bot-line"></span>
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a href="#"  data-toggle="modal" data-target="#largeModal">
+                                    <i class="fas fa-clipboard"></i>
+                                    <span class="bot-line"></span>Add Item To Inventary</a>
+                            </li>
+                            <li>
+                                <a href="phpFiles/Export.php" target="_blank" >
+                                    <i class="fas fa-download"></i>
+                                    <span class="bot-line"></span>Export Inventary File</a>
+                            </li>
+                            <li>
+                                <a href="atelier.html" >
+                                    <i class="fas fa-reply"></i>
+                                    <span class="bot-line"></span>Register Page</a>
+                            </li>
+                        </ul>
                     </div>
+                    
                 </div>
             </div>
+            <hr>
+            <section class="section__content section__content--p35" style="background-color: rgb(105, 104, 105); padding-top: 20px;">
+                <div class="row"></div>
+            <div class="row">
+                <div class="table-data__tool">
+                    <div class="table-data__tool-left">
+                        <form action="" method="POST">
+                        <input class="au-input au-input--w435" type="text" name="searchinventary" id="searchinventary" placeholder="Search...">
+                    </form>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
         </header>
         <!-- END HEADER DESKTOP -->
 
         <!-- WELCOME-->
-        <section class="welcome2  m-t-100 " style="background-color: rgb(250, 103, 103); padding: 15px;">
-            <div class="row"></div>
+        
             <!-- MODALS-->
                  <!-- modal large -->
                  <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
@@ -296,11 +330,11 @@
 <!-- end modal medium -->
 
             <!-- MODALS-->
-        </section>
+       
         <!-- END WELCOME-->
 
         <!-- PAGE CONTENT-->
-        <div class="page-container3">
+        <div class="page-container3" style="margin-top: 150px;">
             <section>
                 <div class="container">
                     <div class="row">
@@ -313,20 +347,6 @@
                                     <div class="col-md-12">
                                         <!-- DATA TABLE-->
                                         <h3 class="title-5 m-b-35"></h3>
-                                        <div class="table-data__tool">
-                                            <div class="table-data__tool-left">
-                                                <form action="" method="POST">
-                                                <input class="au-input au-input--w435" type="text" name="searchinventary" id="searchinventary" placeholder="Search...">
-                                            </form>
-                                            </div>
-                                            <div class="table-data__tool-right">
-                                                <button class="au-btn au-btn-icon au-btn--green au-btn--small"  data-toggle="modal" data-target="#largeModall"><i class="zmdi zmdi-plus"></i> ADD ITEM</button>
-                                                <button class="au-btn au-btn-icon au-btn--blue au-btn--small " data-toggle="modal" data-target="#largeModal">
-                                                    <i class="zmdi zmdi-plus"></i>Add Item To Inventary</button>
-                                                <a href="phpFiles/Export.php" target="_blank"><button class="au-btn au-btn-icon  au-btn--small" style="background-color: orangered;" id="export_file">
-                                                    <i class="zmdi zmdi-print"></i>Export Inventary File</button></a>
-                                            </div>
-                                        </div>
                                         <div class="table-responsive table-responsive-data2">
                                             <table class="table table-data2">
                                                 <thead>
