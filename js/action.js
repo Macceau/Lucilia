@@ -9,7 +9,7 @@ $(document).ready(function(e){
      $('#inputIsValid').hide();$('#inputIsInvalid').hide();$('#tblerrors').hide();$('#tblitems').hide();FullPrinter();$('#avis').hide();
      let edition=false; $('#errorinputIsValid').hide();$('#errorinputIsInvalid').hide(); let editions=false;FullItem();FullInventaryGrid();
      $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide();
-     let edit=false;
+     let edit=false; $('#countitem').hide();
      //-------------------------------fin----------------------------------------
     function FullPrinter(){
         $.ajax({
@@ -38,18 +38,13 @@ $(document).ready(function(e){
             success:function(html){
               let repons=JSON.parse(html);
               let template='';
-              let template1='';
               //console.log(repons);
               repons.forEach(rep=>{
                 template+=`
                  <option value="${rep.id}">${rep.item}  ${rep.itemdesc}</option>
                 `
-                template1=`
-                <span class="badge badge-light">${rep.qtyitem}</span> Items
-                `
               });
               $('#itemnumbers').html(template);
-              $('#countitem').html(template1);
             }
            });
       }
@@ -99,6 +94,7 @@ $(document).ready(function(e){
        }else if(param==="Errors"){
         $('#tblitems').hide(); $('#tblerrors').show(); $('#search').show(); FullErrorsGrid();$('#avis').hide(); 
        }else{
+        $('#countitem').hide();
         $('#tblitems').hide(); $('#tblerrors').hide(); $('#search').show(); 
        }
       });
@@ -111,6 +107,7 @@ $(document).ready(function(e){
             success:function(html){
               let repons=JSON.parse(html);
               let template='';
+              let template1='';
               //console.log(repons);
               repons.forEach(rep=>{
                 template+=`
@@ -136,9 +133,14 @@ $(document).ready(function(e){
                 </td>
             </tr>
                 `
+                template1=`
+                <span class="badge badge-light">${rep.qtyitem}</span> Items
+                `
+
               });
+              $('#countitem').show();
               $('#showitems').html(template);
-          
+              $('#countitem').html(template1);
             }
            });
       }
@@ -323,6 +325,7 @@ $(document).ready(function(e){
             </tr>
                 `
               });
+              $('#countitem').hide();
               $('#showerrors').html(template);
           
             }

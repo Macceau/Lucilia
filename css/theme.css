@@ -880,6 +880,10 @@ section {
     width: 160px;
 }
 
+.rs-select2--mdd {
+    width: 200px;
+}
+
 .select2-container {
     display: block;
     max-width: 100% !important;
