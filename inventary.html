@@ -49,8 +49,8 @@
                     <div class="header__navbar">
                         <ul class="list-unstyled">
                             <li >
-                                <a href="#" data-toggle="modal" data-target="#largeModall">
-                                    <i class="fas fa-tag"></i>ADD ITEM
+                                <a href="#" id="ActiveList" data-toggle="modal" data-target="#largeModall">
+                                    <i class="fas fa-tag"></i>Add Item
                                     <span class="bot-line"></span>
                                 </a>
                                 
@@ -173,8 +173,8 @@
                             <div class="modal-footer">
                                 <input type="text" id="inputIsValidinventary" class="is-valid form-control-success form-control" value="Information as been saved with success.">
                                 <input type="text" id="inputIsInvalidinventary" class="is-invalid form-control" value="Oups! a problem as occured at saving the  information.">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-warning" id="refreshmodal">Refresh Item</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-primary" name="addItemToInventary" id="addItemToInventary">Add Item</button>
                             </div>
                         
@@ -242,7 +242,7 @@
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-6">
-                                <label for="nf-email" class=" form-control-label">Printer</label>
+                                <label for="nf-email" class=" form-control-label">Machines</label>
                                 <select name="printer" id="printer" class="form-control"></select>
                             </div>
                             <div class="col col-md-6">
@@ -262,6 +262,7 @@
             <div class="modal-footer">
                 <input type="text" id="inputIsValid" class="is-valid form-control-success form-control" value="Information as been saved with success.">
                 <input type="text" id="inputIsInvalid" class="is-invalid form-control" value="Oups! a problem as occured at saving the  information.">
+                <button type="button" class="btn btn-warning" name="refreshmachine" id="refreshmachine">Refresh Machine List</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" name="addcreateItem" id="addcreateItem">Create Item</button>
             </div>
@@ -353,7 +354,7 @@
                                                     <tr>
                                                         <th>Item #.</th>
                                                         <th>Item Desc</th>
-                                                        <th>Printer Model</th>
+                                                        <th>Machines</th>
                                                         <th>Sub-Inventary</th>
                                                         <th>UOM</th>
                                                         <th>Loctor</th>

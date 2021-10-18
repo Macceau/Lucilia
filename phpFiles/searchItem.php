@@ -11,7 +11,8 @@
         if($printer=="9"){
             $sql="SELECT i.id,i.item_number,i.item_desc,i.price,i.part_number,i.part_description AS part_desc,
             d.device AS printer_model,i.photo_link FROM items i LEFT JOIN devices d ON d.id=i.printer_model 
-            where i.item_number like '%$param%' or i.item_desc like '%$param%' ORDER BY id desc";
+            where i.item_number like '%$param%' or i.item_desc like '%$param%' 
+			or i.part_description like '%$param%' ORDER BY id desc";
 			$res=SendQuery($sql,$link);
 			if(!$res){
 				Die('Erreur de la commande'.mysqli_error($link));
@@ -37,7 +38,8 @@
 				$condition="piece";
 				$sql="SELECT i.id,i.item_number,i.item_desc,i.price,i.part_number,i.part_description AS part_desc,
 				d.device AS printer_model,i.photo_link,d.id as iddevice FROM items i LEFT JOIN devices d ON d.id=i.printer_model 
-				where d.id=$printer and i.item_number like '%$param%' or i.item_desc like '%$param%' ORDER BY id desc";
+				where d.id=$printer and i.item_number like '%$param%' or i.item_desc like '%$param%' 
+				or i.part_description like '%$param%' ORDER BY id desc";
 				$res=SendQuery($sql,$link);
 				if(!$res){
 					Die('Erreur de la commande'.mysqli_error($link));

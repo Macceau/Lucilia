@@ -9,7 +9,7 @@ $(document).ready(function(e){
      $('#inputIsValid').hide();$('#inputIsInvalid').hide();$('#tblerrors').hide();$('#tblitems').hide();FullPrinter();$('#avis').hide();
      let edition=false; $('#errorinputIsValid').hide();$('#errorinputIsInvalid').hide(); let editions=false;FullItem();FullInventaryGrid();
      $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide();
-     let edit=false; $('#countitem').hide();
+     let edit=false; $('#countitem').hide();$('#refreshmachine').hide();
      //-------------------------------fin----------------------------------------
     function FullPrinter(){
         $.ajax({
@@ -48,6 +48,14 @@ $(document).ready(function(e){
             }
            });
       }
+
+      $(document).on('click','#ActiveList', function(e){
+        $('#refreshmachine').show();
+      }); 
+
+      $(document).on('click','#refreshmachine', function(e){
+        FullPrinter();
+      }); 
     
     $(document).on('click','#addcreateItem', function(e){
         let datos=new FormData($('#additem')[0]); 
@@ -182,6 +190,7 @@ $(document).ready(function(e){
           $('#partdescription').val(repons.partdesc);
           $('#printer').html(template);
           edition=true;
+          $('#refreshmachine').show();
         });
          e.preventDefault();
       
@@ -616,4 +625,6 @@ $(document).ready(function(e){
         $('#showlabel').html(template);
       });
     
+     
+
 });
