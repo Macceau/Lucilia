@@ -68,7 +68,7 @@ $(document).ready(function(e){
             cache: false,
             processData:false,
             success: function(response){
-              // console.log(response);
+               console.log(response);
               if(response==="good"){
                 $('#inputIsValid').show();
                }else if(response==="bad"){
