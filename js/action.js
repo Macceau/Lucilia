@@ -8,7 +8,7 @@ $(document).ready(function(e){
      //-------------------------------fin----------------------------------------
      $('#inputIsValid').hide();$('#inputIsInvalid').hide();$('#tblerrors').hide();$('#tblitems').hide();FullPrinter();$('#avis').hide();
      let edition=false; $('#errorinputIsValid').hide();$('#errorinputIsInvalid').hide(); let editions=false;FullItem();FullInventaryGrid();
-     $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide();
+     $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide(); $('#avisexport').hide();
      let edit=false; $('#countitem').hide();$('#refreshmachine').hide();
      //-------------------------------fin----------------------------------------
     function FullPrinter(){
@@ -625,6 +625,16 @@ $(document).ready(function(e){
         $('#showlabel').html(template);
       });
     
-     
+      $(document).on('click','#exportitems', function(e){
+        let param=$('#property').val();
+        $.post('phpFiles/ExportItems.php', {param}, function(response){
+          
+          if(response==="msg1"){
+            console.log(response);
+            $('#avisexport').show();
+          }
+        });
+         e.preventDefault();
+      }); 
 
 });
