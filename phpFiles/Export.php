@@ -1,18 +1,18 @@
 <?php
 include('../lib/Classe.php');
  $link=DbConnect();
-
+ $DateAndTime = date('d-M-Y h:i:s A');
  $sql="SELECT i.id,i.item_number,i.item_desc,i.part_number,i.part_description,
  d.device AS printer_model,i.photo_link,inv.id AS cod,inv.quantity,inv.statut,
  inv.subinventary,inv.sigle,inv.locator FROM inventary inv LEFT JOIN items i ON inv.item_number=i.id 
  LEFT JOIN devices d ON d.id=i.printer_model";
  $res=SendQuery($sql,$link);
  header("Content-type: application/vnd.ms-excel; charset=iso-8859-1");
- header("Content-Disposition: attachement; filename=inventary".time().".xls");
+ header("Content-Disposition: attachement; filename=inventary_".$DateAndTime.".xls");
  ?>
 
  <table>
-     <caption>Inventary_<?php echo time();?></caption>
+     <caption>Inventary of <?php echo $DateAndTime;?></caption>
     <tr>
         <th>Item #</th>
         <th>Item Desc</th>
@@ -23,7 +23,7 @@ include('../lib/Classe.php');
         <th>Status</th>
         <th>Part Desc</th>
         <th>Part #</th>
-        <th>Printer</th>
+        <th>Machines</th>
         
     </tr>
     <?php
