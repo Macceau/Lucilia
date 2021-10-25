@@ -98,12 +98,12 @@ $(document).ready(function(e){
     $("#property").change(function() {
        let param=$('#property').val();
        if(param==="Items"){
-        $('#tblitems').show(); $('#tblerrors').hide(); $('#tblerrors').hide(); $('#search').show();FullItemsGrid();$('#avis').hide(); 
+        $('#tblitems').show(); $('#tblerrors').hide(); $('#tblerrors').hide(); $('#search').show();FullItemsGrid();$('#avis').hide(); $('#avisexport').hide();
        }else if(param==="Errors"){
-        $('#tblitems').hide(); $('#tblerrors').show(); $('#search').show(); FullErrorsGrid();$('#avis').hide(); 
+        $('#tblitems').hide(); $('#tblerrors').show(); $('#search').show(); FullErrorsGrid();$('#avis').hide(); $('#avisexport').hide();
        }else{
         $('#countitem').hide();
-        $('#tblitems').hide(); $('#tblerrors').hide(); $('#search').show(); 
+        $('#tblitems').hide(); $('#tblerrors').hide(); $('#search').show(); $('#avisexport').hide();
        }
       });
 
@@ -136,6 +136,9 @@ $(document).ready(function(e){
                         </button>
                         <button class="item" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
                             <i class="zmdi zmdi-delete"></i>
+                        </button>
+                        <button class="item" id="addtoinventary" data-toggle="tooltip" data-placement="top" title="Add Item To Inventary">
+                            <i class="fas fa-clipboard"></i>
                         </button>
                     </div>
                 </td>
@@ -247,6 +250,9 @@ $(document).ready(function(e){
                               </button>
                               <button class="item" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
                                   <i class="zmdi zmdi-delete"></i>
+                              </button>
+                              <button class="item" id="addtoinventary" data-toggle="tooltip" data-placement="top" title="Add Item To Inventary">
+                                  <i class="fas fa-clipboard"></i>
                               </button>
                           </div>
                       </td>
@@ -624,17 +630,42 @@ $(document).ready(function(e){
         let template=`<label for="nf-email" class=" form-control-label">${rezilta}</label>`
         $('#showlabel').html(template);
       });
-    
-      $(document).on('click','#exportitems', function(e){
-        let param=$('#property').val();
-        $.post('phpFiles/ExportItems.php', {param}, function(response){
-          
-          if(response==="msg1"){
-            console.log(response);
-            $('#avisexport').show();
+
+      $(document).on('click','#addtoinventary', function(e){
+        let element=$(this)[0].parentElement.parentElement.parentElement;
+       let id= $(element).attr('taskid');
+       $.post('phpFiles/AddItemToInventary.php', {id} , function(response){
+       // console.log(response);
+          if(response==="good"){
+            alert("Item has been added to inventary table with success.");
+          }else{
+            alert("Ouppss! Item not add to inventary table.");
           }
+          
         });
          e.preventDefault();
-      }); 
+      
+      });
 
+      $(document).on('click','#exportitems', function(e){
+        var param=$('#property').val();
+       $.post('phpFiles/download.php', {param} , function(html){
+         if(html==="bad"){
+          $('#avisexport').show();
+         }else if(html==="good"){
+          $('#avisexport').hide();
+          url="phpFiles/download_item.php";
+          window.open(url, '_blank');
+         }else if(html==="well"){
+          $('#avisexport').hide();
+          url="phpFiles/download_error.php";
+          window.open(url, '_blank');
+         }
+        
+        
+        });
+         e.preventDefault();
+      });
+    
+     
 });
