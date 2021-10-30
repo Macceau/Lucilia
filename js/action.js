@@ -68,7 +68,7 @@ $(document).ready(function(e){
             cache: false,
             processData:false,
             success: function(response){
-               console.log(response);
+               //console.log(response);
               if(response==="good"){
                 $('#inputIsValid').show();
                }else if(response==="bad"){
@@ -88,12 +88,24 @@ $(document).ready(function(e){
         var file = this.files[0];
         var imagefile = file.type;
         var match= ["image/jpeg","image/png","image/PNG","image/jpg","image/JPG","image/JPEG"];
-        if(!((imagefile==match[0])|| (imagefile==match[1])|| (imagefile==match[2]) || (imagefile==match[3]) || (imagefile==match[4]))){
-            alert('Oups! The picture format is incorrect, please use one of this format picture (JPEG/JPG/PNG).');
+        if(!((imagefile==match[0])|| (imagefile==match[1])|| (imagefile==match[2]) || (imagefile==match[3]) || (imagefile==match[4])|| (imagefile==match[5]))){
+            alert('Oups! The picture format is incorrect, please use one of this format (JPEG / JPG / PNG).');
             $("#partimage").val('');
             return false;
         }
     });
+
+  /*  $("#exten").change(function() {
+      var file = this.files[0];
+      var imagefile = file.type;
+      var match= ["MP4","mp4","MOV","mov","WMV","wmv","FLV","flv","avi","AVI"];
+      if(!((imagefile==match[0])|| (imagefile==match[1])|| (imagefile==match[2]) || (imagefile==match[3]) || (imagefile==match[4])
+      || (imagefile==match[5]) || (imagefile==match[6]) || (imagefile==match[7]) || (imagefile==match[8]) || (imagefile==match[9]))){
+          alert('Oups! The video format is incorrect, please use one of this format (MP4 / MOV / WMV / FLV / AVI).');
+          $("#exten").val('');
+          return false;
+      }
+  });*/
 
     $("#property").change(function() {
        let param=$('#property').val();
@@ -267,6 +279,9 @@ $(document).ready(function(e){
                       <td>${rep.corrective}</td>
                       <td>
                           <div class="table-data-feature">
+                              <button class="item" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
+                                  <i class="zmdi zmdi-play"></i>
+                              </button>
                               <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
                                   <i class="zmdi zmdi-edit"></i>
                               </button>
@@ -287,29 +302,30 @@ $(document).ready(function(e){
       });
 
       $(document).on('click','#addcreateError', function(e){
-        let datos={
-            problem:$('#problem').val(),
-            printer:$('#errorprinter').val(),
-            cause:$('#cause').val(),
-            corrective:$('#corrective').val(),
-            idproblem:$('#idproblem').val(),
-        };
+        let datos=new FormData($('#adderror')[0]); 
         let url=editions===false ? 'phpFiles/addError.php' : 'phpFiles/editError.php';
-       $.post(url, datos, function(response){
-          //console.log(response);
-          if(response==="good"){
-            $('#errorinputIsValid').show();
-           }else if(response==="bad"){
-            $('#ierrornputIsInvalid').show();
-           }else{
-            $('#errorinputIsValid').show(); 
-           }
-           $('#adderror').trigger('reset');
-           editions=false;
-           FullErrorsGrid();
-        });
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(response){
+               //console.log(response);
+              if(response==="good"){
+                $('#errorinputIsValid').show();
+               }else if(response==="bad"){
+                $('#errorinputIsInvalid').show();
+               }else{
+                $('#errorinputIsValid').show(); 
+               }
+               $('#adderror').trigger('reset');
+               editions=false;
+               FullErrorsGrid();
+            }
+      });
          e.preventDefault();
-      
       });
 
       function FullErrorsGrid(){
@@ -329,7 +345,10 @@ $(document).ready(function(e){
                 <td>${rep.corrective}</td>
                 <td>
                     <div class="table-data-feature">
-                        <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
+                    <button class="item" id="play" data-toggle="modal" data-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
+                    <i class="zmdi zmdi-play"></i>
+                     </button>
+                     <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
                             <i class="zmdi zmdi-edit"></i>
                         </button>
                         <button class="item" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
@@ -349,31 +368,66 @@ $(document).ready(function(e){
 
       $("#printers").change(function() {
         let param=$('#printers').val();
-        $.post('phpFiles/SelectSingleErrors.php',{param},function(response){
-          //console.log(response);
+        let params=$('#property').val();
+        $.post('phpFiles/SelectSingleErrors.php',{param,params},function(response){
+         // console.log(response);
           let repons=JSON.parse(response);
-          let template='';
+          let template='';let templates='';
           repons.forEach(rep=>{
-            template+=`
-            <tr class="tr-shadow" taskid="${rep.id}">
-            <td>${rep.problem}</td>
-            <td>${rep.printer}</td>
-            <td>${rep.cause}</td>
-            <td>${rep.corrective}</td>
-            <td>
-                <div class="table-data-feature">
-                    <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
-                        <i class="zmdi zmdi-edit"></i>
-                    </button>
-                    <button class="item" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
-                        <i class="zmdi zmdi-delete"></i>
-                    </button>
-                </div>
-            </td>
-        </tr>
-            `
+            if(rep.lojik===""){
+                  template+=`
+                  <tr class="tr-shadow" taskid="${rep.id}">
+                  <td>${rep.problem}</td>
+                  <td>${rep.printer}</td>
+                  <td>${rep.cause}</td>
+                  <td>${rep.corrective}</td>
+                  <td>
+                      <div class="table-data-feature">
+                          <button class="item" id="play" data-toggle="modal" data-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
+                          <i class="zmdi zmdi-play"></i>
+                          </button>
+                          <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
+                              <i class="zmdi zmdi-edit"></i>
+                          </button>
+                          <button class="item" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
+                              <i class="zmdi zmdi-delete"></i>
+                          </button>
+                      </div>
+                  </td>
+                  </tr>
+                  `
+            }else{
+              templates+=`
+              <tr class="tr-shadow" taskid="${rep.id}">
+              <td>${rep.item}</td>
+              <td>${rep.itemdesc}</td>
+              <td>${rep.price}</td>
+              <td>${rep.partdesc}</td>
+              <td>${rep.part}</td>
+              <td>${rep.printer}</td>
+              <td>
+                  <div class="table-data-feature">
+                      <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                          <i class="zmdi zmdi-camera"></i>
+                      </button>
+                      <button class="item" id="edititem" data-toggle="modal" data-target="#largeModalll" data-toggle="tooltip" data-placement="top" title="Edit">
+                          <i class="zmdi zmdi-edit"></i>
+                      </button>
+                      <button class="item" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
+                          <i class="zmdi zmdi-delete"></i>
+                      </button>
+                      <button class="item" id="addtoinventary" data-toggle="tooltip" data-placement="top" title="Add Item To Inventary">
+                          <i class="fas fa-clipboard"></i>
+                      </button>
+                  </div>
+              </td>
+          </tr>
+              `
+            }
+            
           });
           $('#showerrors').html(template);
+          $('#showitems').html(templates);
         });
       });
 
@@ -398,12 +452,17 @@ $(document).ready(function(e){
        let id= $(element).attr('taskid');
        $.post('phpFiles/SelectSingleError.php', {id} , function(response){
        // console.log(response);
+       let template='';
           const repons=JSON.parse(response);
+          template=`
+            <option value="${repons.code}">${repons.printer}</option>
+          `
           $('#idproblem').val(repons.id);
           $('#problem').val(repons.problem);
           $('#cause').val(repons.cause);
           $('#corrective').val(repons.corrective);
-          $('#errorprinter').val(repons.printer);
+          $('#errorprinter').html(repons.template);
+          $('#videoexten').val(repons.video);
           editions=true;
         });
          e.preventDefault();
@@ -667,5 +726,20 @@ $(document).ready(function(e){
          e.preventDefault();
       });
     
+      $(document).on('click','#play', function(e){
+        let element=$(this)[0].parentElement.parentElement.parentElement;
+       let id= $(element).attr('taskid');
+       $.post('phpFiles/videolink.php', {id} , function(response){
+       // console.log(response);
+          let repons=JSON.parse(response);
+          let template=""; let template1="";
+            template=`<video src="${repons.video}" poster="videos/luciliaplayer.jpg" controls width="750" height="421"></video>`
+            template1=`<h5>Problem Title:</h5><h5 id="problemname">${repons.problem}</h5>`
+          $('#video').html(template);
+          $('#problemname').html(template1); 
+        });
+         e.preventDefault();
+      
+      });
      
 });
