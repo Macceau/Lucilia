@@ -95,14 +95,14 @@ $(document).ready(function(e){
         }
     });
 
-  /*  $("#videoexten").change(function() {
+  /*  $("#exten").change(function() {
       var file = this.files[0];
       var imagefile = file.type;
-      var match= ["video/MP4","video/mp4","video/MOV","video/mov","video/WMV","video/wmv","video/FLV","video/flv","video/avi","video/AVI"];
+      var match= ["MP4","mp4","MOV","mov","WMV","wmv","FLV","flv","avi","AVI"];
       if(!((imagefile==match[0])|| (imagefile==match[1])|| (imagefile==match[2]) || (imagefile==match[3]) || (imagefile==match[4])
       || (imagefile==match[5]) || (imagefile==match[6]) || (imagefile==match[7]) || (imagefile==match[8]) || (imagefile==match[9]))){
           alert('Oups! The video format is incorrect, please use one of this format (MP4 / MOV / WMV / FLV / AVI).');
-          $("#videoexten").val('');
+          $("#exten").val('');
           return false;
       }
   });*/
@@ -302,31 +302,30 @@ $(document).ready(function(e){
       });
 
       $(document).on('click','#addcreateError', function(e){
-        let datos=new FormData($('#adderror')[0]);
+        let datos=new FormData($('#adderror')[0]); 
         let url=editions===false ? 'phpFiles/addError.php' : 'phpFiles/editError.php';
-            $.ajax({
-              type: 'POST',
-              url: url,
-              data: datos,
-              contentType: false,
-              cache: false,
-              processData:false,
-              success: function(response){
-                console.log(response);
-                if(response==="good"){
-                  $('#errorinputIsValid').show();
-                }else if(response==="bad"){
-                  $('#ierrornputIsInvalid').show();
-                }else{
-                  $('#errorinputIsValid').show(); 
-                }
-                $('#adderror').trigger('reset');
-                edition=false;
-                FullErrorsGrid();
-              }
-            });
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: datos,
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(response){
+               //console.log(response);
+              if(response==="good"){
+                $('#errorinputIsValid').show();
+               }else if(response==="bad"){
+                $('#errorinputIsInvalid').show();
+               }else{
+                $('#errorinputIsValid').show(); 
+               }
+               $('#adderror').trigger('reset');
+               editions=false;
+               FullErrorsGrid();
+            }
+      });
          e.preventDefault();
-      
       });
 
       function FullErrorsGrid(){
@@ -369,34 +368,66 @@ $(document).ready(function(e){
 
       $("#printers").change(function() {
         let param=$('#printers').val();
-        $.post('phpFiles/SelectSingleErrors.php',{param},function(response){
-          //console.log(response);
+        let params=$('#property').val();
+        $.post('phpFiles/SelectSingleErrors.php',{param,params},function(response){
+         // console.log(response);
           let repons=JSON.parse(response);
-          let template='';
+          let template='';let templates='';
           repons.forEach(rep=>{
-            template+=`
-            <tr class="tr-shadow" taskid="${rep.id}">
-            <td>${rep.problem}</td>
-            <td>${rep.printer}</td>
-            <td>${rep.cause}</td>
-            <td>${rep.corrective}</td>
-            <td>
-                <div class="table-data-feature">
-                    <button class="item" id="play" data-toggle="modal" data-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
-                    <i class="zmdi zmdi-play"></i>
-                     </button>
-                    <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
-                        <i class="zmdi zmdi-edit"></i>
-                    </button>
-                    <button class="item" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
-                        <i class="zmdi zmdi-delete"></i>
-                    </button>
-                </div>
-            </td>
-        </tr>
-            `
+            if(rep.lojik===""){
+                  template+=`
+                  <tr class="tr-shadow" taskid="${rep.id}">
+                  <td>${rep.problem}</td>
+                  <td>${rep.printer}</td>
+                  <td>${rep.cause}</td>
+                  <td>${rep.corrective}</td>
+                  <td>
+                      <div class="table-data-feature">
+                          <button class="item" id="play" data-toggle="modal" data-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
+                          <i class="zmdi zmdi-play"></i>
+                          </button>
+                          <button class="item" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
+                              <i class="zmdi zmdi-edit"></i>
+                          </button>
+                          <button class="item" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
+                              <i class="zmdi zmdi-delete"></i>
+                          </button>
+                      </div>
+                  </td>
+                  </tr>
+                  `
+            }else{
+              templates+=`
+              <tr class="tr-shadow" taskid="${rep.id}">
+              <td>${rep.item}</td>
+              <td>${rep.itemdesc}</td>
+              <td>${rep.price}</td>
+              <td>${rep.partdesc}</td>
+              <td>${rep.part}</td>
+              <td>${rep.printer}</td>
+              <td>
+                  <div class="table-data-feature">
+                      <button class="item" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                          <i class="zmdi zmdi-camera"></i>
+                      </button>
+                      <button class="item" id="edititem" data-toggle="modal" data-target="#largeModalll" data-toggle="tooltip" data-placement="top" title="Edit">
+                          <i class="zmdi zmdi-edit"></i>
+                      </button>
+                      <button class="item" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
+                          <i class="zmdi zmdi-delete"></i>
+                      </button>
+                      <button class="item" id="addtoinventary" data-toggle="tooltip" data-placement="top" title="Add Item To Inventary">
+                          <i class="fas fa-clipboard"></i>
+                      </button>
+                  </div>
+              </td>
+          </tr>
+              `
+            }
+            
           });
           $('#showerrors').html(template);
+          $('#showitems').html(templates);
         });
       });
 
