@@ -4,8 +4,9 @@
  $param=$_POST['param'];
  $sql="SELECT i.id,i.item_number,i.item_desc,i.part_number,i.part_description,
  d.device AS printer_model,i.photo_link,inv.id AS cod,inv.quantity,inv.statut,
- inv.subinventary,inv.sigle,inv.locator FROM inventary inv LEFT JOIN items i ON inv.item_number=i.id 
- LEFT JOIN devices d ON d.id=i.printer_model 
+su.sub as subinventary,si.sigle,l.locator FROM inventary inv LEFT JOIN items i ON inv.item_number=i.id 
+LEFT JOIN devices d ON d.id=i.printer_model left join subinventary su on su.id=inv.subinventary
+left join sigles si on si.id=inv.sigle left join locators l on l.id=inv.locator 
 where d.device like '%$param%' or i.item_number like '%$param%'
  or i.item_desc like '%$param%' or inv.statut like '%$param%'
  or inv.subinventary like '%$param%' or inv.sigle like '%$param%'
