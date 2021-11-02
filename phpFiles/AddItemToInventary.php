@@ -3,10 +3,10 @@ include('../lib/Classe.php');
 $link=DbConnect();
         if(!empty(isset($_POST['id']))){
                 $item=$_POST['id'];
-                $qty=1;
-                $subinventary="HT TCK CEN";
-                $sigle="EA";
-                $locator="FG-S";
+                $qty=0;
+                $subinventary=0;
+                $sigle=0;
+                $locator=0;
                 $status="Exists";
               $sql="insert into inventary(item_number,quantity,subinventary,sigle,locator,statut) 
               values('$item','$qty','$subinventary','$sigle','$locator','$status')";

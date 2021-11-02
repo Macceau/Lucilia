@@ -3,8 +3,9 @@
  $link=DbConnect();
  $sql="SELECT i.id,i.item_number,i.item_desc,i.part_number,i.part_description,
  d.device AS printer_model,i.photo_link,inv.id AS cod,inv.quantity,inv.statut,
- inv.subinventary,inv.sigle,inv.locator FROM inventary inv LEFT JOIN items i 
- ON inv.item_number=i.id LEFT JOIN devices d ON d.id=i.printer_model order by cod desc";
+su.sub as subinventary,si.sigle,l.locator FROM inventary inv LEFT JOIN items i ON inv.item_number=i.id 
+LEFT JOIN devices d ON d.id=i.printer_model left join subinventary su on su.id=inv.subinventary
+left join sigles si on si.id=inv.sigle left join locators l on l.id=inv.locator order by cod desc";
      $res=SendQuery($sql,$link);
         if(!$res){
          Die('Erreur de la commande'.mysqli_error($link));
