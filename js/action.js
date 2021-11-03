@@ -366,6 +366,7 @@ $(document).ready(function(e){
                $('#adderror').trigger('reset');
                editions=false;
                FullErrorsGrid();
+			   $('#refreshmachine').hide();
             }
       });
          e.preventDefault();
@@ -574,6 +575,7 @@ $(document).ready(function(e){
            }
            edit=true;
            $('#addinventary').trigger('reset');
+		   
         });
          e.preventDefault();
       
@@ -655,6 +657,7 @@ $(document).ready(function(e){
             $('#sigle').val(repons.sigle);
             $('#locator').val(repons.locator);
             edit=true;
+			
         });
          e.preventDefault();
       
@@ -675,6 +678,7 @@ $(document).ready(function(e){
           }
           $('#updateinventaryfrm').trigger('reset');
           FullInventaryGrid();
+		  
         });
          e.preventDefault();
       
