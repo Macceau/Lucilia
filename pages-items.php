@@ -76,7 +76,7 @@ $manage=$_SESSION['usuario'];
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="pages-welcome.php">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Items </li>
+          <li class="breadcrumb-item active">Items&nbsp;&nbsp; </li>
           <li id="countitem"> </li>
         </ol>
       </nav>
@@ -182,7 +182,7 @@ $manage=$_SESSION['usuario'];
                     <th scope="col">PARTS DESC</th>
                     <th scope="col">PARTS #</th>
                     <th scope="col">MACHINES</th>
-                    <th width="150"></th>
+                    <th width="155"></th>
                   </tr>
                 </thead>
                 <tbody id="showitems">

@@ -10,7 +10,7 @@ $(document).ready(function(e){
      $('#inputIsValid').hide();$('#inputIsInvalid').hide();$('#tblerrors').hide();$('#tblitems').hide();FullPrinter();$('#avis').hide();
      let edition=false; $('#errorinputIsValid').hide();$('#errorinputIsInvalid').hide(); let editions=false;FullItem();FullInventaryGrid();
      $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide(); $('#avisexport').hide(); let machineedition=false;
-     let edit=false; $('#countitem').hide(); $('#refreshmachine').hide(); $('#goodalert').hide(); $('#badalert').hide(); $('#badusername').hide();
+     let edit=false; $('#refreshmachine').hide(); $('#goodalert').hide(); $('#badalert').hide(); $('#badusername').hide();
      $('#goodpassword').hide(); $('#badpassword').hide(); $('#badconfirmation').hide(); FullMachine(); locatoredition=false; FullLocator();
      let subedition=false; FullSub(); let sigleedition=false; FullSigle();
      
@@ -128,9 +128,8 @@ $(document).ready(function(e){
        if(param==="Items"){
         $('#tblitems').show(); $('#tblerrors').hide(); $('#tblerrors').hide(); $('#search').show();FullItemsGrid();$('#avis').hide(); $('#avisexport').hide();
        }else if(param==="Errors"){
-        $('#tblitems').hide(); $('#tblerrors').show(); $('#search').show(); FullErrorsGrid();$('#avis').hide(); $('#avisexport').hide();$('#countitem').show();
+        $('#tblitems').hide(); $('#tblerrors').show(); $('#search').show(); FullErrorsGrid();$('#avis').hide(); $('#avisexport').hide();
        }else{
-        $('#countitem').show();
         $('#tblitems').hide(); $('#tblerrors').hide(); $('#search').show(); $('#avisexport').hide();
        }
       });
@@ -177,7 +176,6 @@ $(document).ready(function(e){
                 `
 
               });
-              $('#countitem').show();
               $('#showitems').html(template);
               $('#countitem').html(template1);
             }
@@ -403,7 +401,6 @@ $(document).ready(function(e){
             </tr>
                 `
               });
-              $('#countitem').hide();
               $('#showerrors').html(template);
           
             }
