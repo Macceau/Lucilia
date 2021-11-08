@@ -76,7 +76,8 @@ $manage=$_SESSION['usuario'];
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="pages-welcome.php">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Inventary </li>
+          <li class="breadcrumb-item active">Inventary &nbsp;&nbsp; </li>
+          <li id="countiteminventary"> </li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
