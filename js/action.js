@@ -585,7 +585,7 @@ $(document).ready(function(e){
             success:function(html){
               //console.log(html);
               let repons=JSON.parse(html);
-              let template='';
+              let template='';  let template1='';
               repons.forEach(rep=>{
                 template+=`
                  <tr taskid="${rep.iditem}" taskitem="${rep.id}">
@@ -614,10 +614,11 @@ $(document).ready(function(e){
                     </td>
                   </tr> 
                 `
+                template1=`<span class="badge bg-warning text-dark">${rep.count}</span>`
               });
               
               $('#viewinventary').html(template);
-          
+              $('#countiteminventary').html(template1);
             }
            });
       }
