@@ -183,12 +183,12 @@ $(document).ready(function(e){
       }
 
       $(document).on('click','#viewpicture', function(e){
-        let element=$(this)[0].parentElement.parentElement.parentElement;
+       let element=$(this)[0].parentElement.parentElement.parentElement;
        let id= $(element).attr('taskid');
        $.post('phpFiles/SelectSingleItems.php', {id} , function(response){
           const repons=JSON.parse(response);
           let template='';
-         // console.log(repons);
+          //console.log(repons);
           template+=`
                 <img class="card-img-top" src="${repons.link}" alt="Card image cap">
                 <div class="card-body">
@@ -249,7 +249,7 @@ $(document).ready(function(e){
             param:$('#search').val(),
         };
        $.post('phpFiles/searchItem.php', datos, function(response){
-          console.log(response);
+          //console.log(response);
           let template=''; let template1='';let template2='';
           if(response==="sendavis"){
             $('#avis').show();
@@ -440,29 +440,29 @@ $(document).ready(function(e){
             }else if(rep.lojik==="val"){
               templates+=`
               <tr class="tr-shadow" taskid="${rep.id}">
-              <td>${rep.item}</td>
-              <td>${rep.itemdesc}</td>
-              <td>${rep.price}</td>
-              <td>${rep.partdesc}</td>
-              <td>${rep.part}</td>
-              <td>${rep.printer}</td>
-              <td>
-                  <div class="table-data-feature">
-                  <button class="btn btn-primary" id="viewpicture" data-toggle="modal" data-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
-                  <i class="bi bi-camera"></i>
-              </button>
-              <button class="btn btn-success" id="edititem" data-toggle="modal" data-target="#largeModalll" data-toggle="tooltip" data-placement="top" title="Edit">
-                  <i class="bi bi-pencil"></i>
-              </button>
-              <button class="btn btn-danger" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
-                  <i class="bi bi-trash"></i>
-              </button>
-              <button class="btn btn-info" id="addtoinventary" data-toggle="tooltip" data-placement="top" title="Add Item To Inventary">
-                  <i class="bi bi-clipboard"></i>
-              </button>
-                  </div>
-              </td>
-          </tr>
+                      <td>${rep.item}</td>
+                      <td>${rep.itemdesc}</td>
+                      <td>${rep.price}</td>
+                      <td>${rep.partdesc}</td>
+                      <td>${rep.part}</td>
+                      <td>${rep.printer}</td>
+                      <td>
+                          <div class="table-data-feature">
+                          <button class="btn btn-primary" id="viewpicture" data-bs-toggle="modal" data-bs-target="#mediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                             <i class="bi bi-camera"></i>
+                          </button>
+                          <button class="btn btn-success" id="edititem" data-bs-toggle="modal" data-bs-target="#largeModalll" data-toggle="tooltip" data-placement="top" title="Edit">
+                             <i class="bi bi-pencil"></i>
+                          </button>
+                          <button class="btn btn-danger" id="deleteitem" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <i class="bi bi-trash"></i>
+                          </button>
+                          <button class="btn btn-info" id="addtoinventary" data-toggle="tooltip" data-placement="top" title="Add Item To Inventary">
+                             <i class="bi bi-clipboard"></i>
+                          </button>
+                          </div>
+                      </td>
+                </tr>
               `
             }else {
               template1+=`
