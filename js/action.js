@@ -286,7 +286,7 @@ $(document).ready(function(e){
                 `
                }else if(rep.condition==="error"){
                   template1+=`
-                      <tr class="tr-shadow" taskid="${rep.id}">
+                      <tr class="tr-shadow" taskid="${rep.id}" style="text-align:justify;">
                       <td>${rep.problem}</td>
                       <td>${rep.printer}</td>
                       <td>${rep.cause}</td>
@@ -380,7 +380,7 @@ $(document).ready(function(e){
               //console.log(repons);
               repons.forEach(rep=>{
                 template+=`
-                <tr class="tr-shadow" taskid="${rep.id}">
+                <tr class="tr-shadow" taskid="${rep.id}" style="text-align:justify;">
                 <td>${rep.problem}</td>
                 <td>${rep.printer}</td>
                 <td>${rep.cause}</td>
@@ -417,7 +417,7 @@ $(document).ready(function(e){
           repons.forEach(rep=>{
             if(rep.lojik===""){
                   template+=`
-                  <tr class="tr-shadow" taskid="${rep.id}">
+                  <tr class="tr-shadow" taskid="${rep.id}"style="text-align:justify;" >
                   <td>${rep.problem}</td>
                   <td>${rep.printer}</td>
                   <td>${rep.cause}</td>
