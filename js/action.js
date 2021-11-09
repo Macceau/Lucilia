@@ -130,7 +130,7 @@ $(document).ready(function(e){
        }else if(param==="Errors"){
         $('#tblitems').hide(); $('#tblerrors').show(); $('#search').show(); FullErrorsGrid();$('#avis').hide(); $('#avisexport').hide();
        }else{
-        $('#tblitems').hide(); $('#tblerrors').hide(); $('#search').show(); $('#avisexport').hide();
+        $('#tblitems').hide(); $('#tblerrors').hide(); $('#search').show(); $('#avisexport').hide(); $('#avis').hide();
        }
       });
 
@@ -411,7 +411,7 @@ $(document).ready(function(e){
         let param=$('#printers').val();
         let params=$('#property').val();
         $.post('phpFiles/SelectSingleErrors.php',{param,params},function(response){
-          //console.log(response);
+          console.log(response);
           let repons=JSON.parse(response);
           let template='';let templates='';let template1='';
           repons.forEach(rep=>{
@@ -464,7 +464,9 @@ $(document).ready(function(e){
                       </td>
                 </tr>
               `
-            }else {
+            }else if(rep.lojik==="msgerr"){
+              $('#avis').show();
+            }else{
               template1+=`
               <tr taskid="${rep.iditem}" taskitem="${rep.id}">
                   <td>${rep.item}</td>
