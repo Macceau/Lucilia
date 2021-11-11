@@ -190,10 +190,21 @@ $(document).ready(function(e){
           let template='';
           //console.log(repons);
           template+=`
+              <div class="modal-body">
                 <img class="card-img-top" src="${repons.link}" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title mb-3">Picture Desc.: ${repons.partdesc}</h4>
-                    <p class="card-text"> Part #: ${repons.part} / Item Name: ${repons.itemdesc} / Item #: ${repons.item} </p>
+              </div>
+                <div class="modal-footer">
+                  
+                    <button type="button" class="btn btn-primary mb-2">
+                      Part Number <span class="badge bg-white text-primary">${repons.part}</span>
+                    </button>
+                    <button type="button" class="btn btn-success mb-2">
+                      Item Number: <span class="badge bg-white text-primary">${repons.item}</span>
+                    </button>
+                    <button type="button" class="btn btn-warning mb-2">
+                    Item Name: <span class="badge bg-white text-primary">${repons.itemdesc}</span>
+                    </button>
+                  
                 </div>
                 `
             $('#showedpicture').html(template);
@@ -777,7 +788,11 @@ $(document).ready(function(e){
           let repons=JSON.parse(response);
           let template=""; let template1="";
             template=`<video src="${repons.video}" poster="videos/luciliaplayer.jpg" controls width="750" height="421"></video>`
-            template1=`<h5>Problem Title:</h5><h5 id="problemname">${repons.problem}</h5>`
+            template1=`
+            <button type="button" class="btn btn-warning mb-2">
+              Problem Title <span class="badge bg-white text-primary" id="problemname">${repons.problem}</span>
+            </button>
+            `
           $('#video').html(template);
           $('#problemname').html(template1); 
         });
