@@ -261,7 +261,7 @@ $(document).ready(function(e){
         };
        $.post('phpFiles/searchItem.php', datos, function(response){
           //console.log(response);
-          let template=''; let template1='';let template2='';
+          let template=''; let template1='';let template2=''; let temp='';let temp1='';
           if(response==="sendavis"){
             $('#avis').show();
           }else{
@@ -295,6 +295,10 @@ $(document).ready(function(e){
                       </td>
                 </tr>
                 `
+                temp=`
+                 <span class="badge bg-warning text-dark">${rep.qtyitem}</span>
+                `
+
                }else if(rep.condition==="error"){
                   template1+=`
                       <tr class="tr-shadow" taskid="${rep.id}" style="text-align:justify;">
@@ -344,9 +348,13 @@ $(document).ready(function(e){
                     </td>
                   </tr> 
                 `
+                temp1=`
+                <span class="badge bg-warning text-dark">${rep.count}</span>
+               `
                }
               });
               $('#showitems').html(template);$('#showerrors').html(template1);$('#viewinventary').html(template2);
+              $('#countitem').html(temp);$('#countiteminventary').html(temp1);
           }  
         });
          e.preventDefault();
@@ -422,9 +430,9 @@ $(document).ready(function(e){
         let param=$('#printers').val();
         let params=$('#property').val();
         $.post('phpFiles/SelectSingleErrors.php',{param,params},function(response){
-          console.log(response);
+          //console.log(response);
           let repons=JSON.parse(response);
-          let template='';let templates='';let template1='';
+          let template='';let templates='';let template1=''; let temp=''; let temp1='';
           repons.forEach(rep=>{
             if(rep.lojik===""){
                   template+=`
@@ -475,6 +483,10 @@ $(document).ready(function(e){
                       </td>
                 </tr>
               `
+              temp=`
+                <span class="badge bg-warning text-dark">${rep.qtyitem}</span>
+                `
+
             }else if(rep.lojik==="msgerr"){
               $('#avis').show();
             }else{
@@ -505,12 +517,16 @@ $(document).ready(function(e){
                  </td>
                </tr> 
              `
+             temp1=`<span class="badge bg-warning text-dark">${rep.count}</span>`
+
             }
             
           });
           $('#showerrors').html(template);
           $('#showitems').html(templates);
           $('#viewinventary').html(template1);
+          $('#countitem').html(temp);
+          $('#countiteminventary').html(temp1);
         });
       });
 
@@ -808,7 +824,7 @@ $(document).ready(function(e){
           password:$('#password').val(),
         };
        $.post('phpFiles/register.php', datos , function(html){
-         console.log(html);
+       //  console.log(html);
           if(html==="bad"){
             $('#badalert').show();
             $('#goodalert').hide();

@@ -17,6 +17,15 @@
 			if(!$res){
 				Die('Erreur de la commande'.mysqli_error($link));
 			}
+
+			$sql1="select count(id) as qty from items";
+			$sql2="select count(id) as qty from items where item_number like '%$param%' or item_desc like '%$param%' 
+			or part_description like '%$param%'";
+			$res1=SendQuery($sql1,$link); $res2=SendQuery($sql2,$link);
+			$row1=BringRow($res1); $row2=BringRow($res2);
+			
+			$val=$row2["qty"]." Of ".$row1["qty"];
+
 				$json=array();
 			while($row=BringRow($res)){
 				$json[]=array(
@@ -28,7 +37,8 @@
 					'partdesc'=>$row["part_desc"],
 					'printer'=>$row["printer_model"],
 					'link'=>$row["photo_link"],
-					'condition'=>$condition
+					'condition'=>$condition,
+					'qtyitem'=>$val
 				);
 			}
 				$jsonstring=json_encode($json);
@@ -44,6 +54,16 @@
 				if(!$res){
 					Die('Erreur de la commande'.mysqli_error($link));
 				}
+
+				$sql1="select count(id) as qty from items";
+				$sql2="select count(id) as qty from items where printer_model=$printer and item_number like '%$param%' or item_desc like '%$param%' 
+				or part_description like '%$param%'";
+                $res1=SendQuery($sql1,$link); $res2=SendQuery($sql2,$link);
+                $row1=BringRow($res1); $row2=BringRow($res2);
+                
+                $val=$row2["qty"]." Of ".$row1["qty"];
+
+
 					$json=array();
 			while($row=BringRow($res)){
 				$json[]=array(
@@ -55,7 +75,8 @@
 					'partdesc'=>$row["part_desc"],
 					'printer'=>$row["printer_model"],
 					'link'=>$row["photo_link"],
-					'condition'=>$condition
+					'condition'=>$condition,
+					'qtyitem'=>$val
 				);
 			}
 				$jsonstring=json_encode($json);
@@ -121,6 +142,18 @@
 					if(!$res){
 					Die('Erreur de la commande'.mysqli_error($link));
 					}
+					$sql1="select count(id) as qty from inventary";
+					$sql2="select count(inv.id) as qty FROM inventary inv LEFT JOIN items i ON inv.item_number=i.id 
+					LEFT JOIN devices d ON d.id=i.printer_model left join subinventary su on su.id=inv.subinventary
+					left join sigles si on si.id=inv.sigle left join locators l on l.id=inv.locator
+					where d.device like '%$param%' or i.item_number like '%$param%'
+					or i.item_desc like '%$param%' or inv.statut like '%$param%'
+					or inv.subinventary like '%$param%' or inv.sigle like '%$param%'
+					or inv.locator like '%$param%'";
+					$res1=SendQuery($sql1,$link); $res2=SendQuery($sql2,$link);
+					$row1=BringRow($res1);$row2=BringRow($res2);
+					
+
 					$json=array();
 					while($row=BringRow($res)){
 					$json[]=array(
@@ -137,7 +170,8 @@
 						'locator'=>$row["locator"],
 						'qty'=>$row["quantity"],
 						'status'=>$row["statut"],
-						'condition'=>$condition
+						'condition'=>$condition,
+						'count'=>$row2["qty"]." Of ".$row1["qty"],
 
 					);
 					}
@@ -158,6 +192,18 @@
 					if(!$res){
 					Die('Erreur de la commande'.mysqli_error($link));
 					}
+
+					$sql1="select count(id) as qty from inventary";
+					$sql2="select count(inv.id) as qty FROM inventary inv LEFT JOIN items i ON inv.item_number=i.id 
+					LEFT JOIN devices d ON d.id=i.printer_model left join subinventary su on su.id=inv.subinventary
+					left join sigles si on si.id=inv.sigle left join locators l on l.id=inv.locator
+					where i.printer_model='$printer' and (i.item_number like '%$param%'
+			        or i.item_desc like '%$param%' or inv.statut like '%$param%'
+			        or inv.subinventary like '%$param%' or inv.sigle like '%$param%'
+			        or inv.locator like '%$param%')";
+					$res1=SendQuery($sql1,$link); $res2=SendQuery($sql2,$link);
+					$row1=BringRow($res1);$row2=BringRow($res2);
+
 					$json=array();
 					while($row=BringRow($res)){
 					$json[]=array(
@@ -174,7 +220,8 @@
 						'locator'=>$row["locator"],
 						'qty'=>$row["quantity"],
 						'status'=>$row["statut"],
-						'condition'=>$condition
+						'condition'=>$condition,
+						'count'=>$row2["qty"]." Of ".$row1["qty"],
 
 					);
 					}
