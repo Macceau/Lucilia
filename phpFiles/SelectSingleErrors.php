@@ -88,7 +88,16 @@
             }
      
    }else{
-        if($param1=="Errors"){
+
+        if($param1=="Please Select"){
+            $lide="msgerr";
+            $json=array();
+            $json[]=array(
+                'lojik'=>$lide
+            );
+            $jsonstring=json_encode($json);
+            echo $jsonstring;   
+        }else if($param1=="Errors"){
             $lide="";
         $sql="SELECT e.id,e.problem,e.probable_cause,e.corrective_action,d.id as code,d.device AS printer_model,e.video FROM errores e
         LEFT JOIN devices d ON d.id=e.printer where e.printer='$param'  ORDER BY id desc";
