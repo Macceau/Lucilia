@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Hôte :                        127.0.0.1
--- Version du serveur:           5.7.31 - MySQL Community Server (GPL)
--- SE du serveur:                Win64
+-- Host:                         127.0.0.1
+-- Server version:               5.7.31 - MySQL Community Server (GPL)
+-- Server OS:                    Win64
 -- HeidiSQL Version:             11.0.0.6037
 -- --------------------------------------------------------
 
@@ -12,18 +12,18 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Listage de la structure de la base pour macfilter
+-- Dumping database structure for macfilter
 CREATE DATABASE IF NOT EXISTS `macfilter` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `macfilter`;
 
--- Listage de la structure de la table macfilter. devices
+-- Dumping structure for table macfilter.devices
 CREATE TABLE IF NOT EXISTS `devices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `device` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.devices : ~10 rows (environ)
+-- Dumping data for table macfilter.devices: ~9 rows (approximately)
 /*!40000 ALTER TABLE `devices` DISABLE KEYS */;
 INSERT INTO `devices` (`id`, `device`) VALUES
 	(1, 'Monarch ADTP'),
@@ -38,7 +38,7 @@ INSERT INTO `devices` (`id`, `device`) VALUES
 	(10, 'Sonic Knife');
 /*!40000 ALTER TABLE `devices` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. errores
+-- Dumping structure for table macfilter.errores
 CREATE TABLE IF NOT EXISTS `errores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `problem` text,
@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `errores` (
   `corrective_action` text,
   `video` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=160 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=177 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.errores : ~159 rows (environ)
+-- Dumping data for table macfilter.errores: ~154 rows (approximately)
 /*!40000 ALTER TABLE `errores` DISABLE KEYS */;
 INSERT INTO `errores` (`id`, `problem`, `printer`, `probable_cause`, `corrective_action`, `video`) VALUES
 	(1, 'LEDs do not light.', 5, '1) Insufficient supply voltage. \n2) Machine is not plugged in.', '1) Look at the line voltage level shown on the back of the printer (see Figure 5). Confirm \nthat the mains line voltage for your location is within the range limits.\n2) Check that both ends of the power cord are plugged in securely.\n3) Confirm that the outlet the machine is plugged into has power.', NULL),
@@ -210,10 +210,27 @@ INSERT INTO `errores` (`id`, `problem`, `printer`, `probable_cause`, `corrective
 	(156, 'Platform cannot find  home ', 7, '1) Sensor unplugged.\r\n2) Sensor out of alignment.\r\n', '1) Remove back cover and check \r\nconnections. \r\n1.1) Broken wire or damaged LED\r\n2) Outer bracket bent and needs to be \r\nreformed.', ''),
 	(157, 'Top of stack is blocking  incoming labels ', 7, 'Sensor not operational ', '1) Check sensor alignment \r\n2) Stacker not connected \r\n3) Loose connection ', ''),
 	(158, 'Stack of labels falling  over', 7, '1) Static brush position\r\n2) Platform angle\r\n3) Tip stacker', '1) Move static brush up or down\r\n2) Move to other position\r\n3) Change angle', ''),
-	(159, 'Label not entering  stacker ', 7, '1) Label jam in knife\r\n2) Nip roller not pulling \r\n3) Soft material / narrow web \r\nhitting static brush', '1) Clean out label and debris\r\n2) Worn rubber roller - Replace \r\n2.1) Loose set screw or drive gear - Tighten \r\n3) Adjust the height of the static brush', '');
+	(159, 'Label not entering  stacker ', 7, '1) Label jam in knife\r\n2) Nip roller not pulling \r\n3) Soft material / narrow web \r\nhitting static brush', '1) Clean out label and debris\r\n2) Worn rubber roller - Replace \r\n2.1) Loose set screw or drive gear - Tighten \r\n3) Adjust the height of the static brush', ''),
+	(160, 'Web will not advance', 2, '1) Insufficient feed pressure.  2) Defective feed component. ', '1) Check for broken spring. 1.1) Spring is off pressure mount pin. 1.2) Clean ink build up from grit rollers. 1.3) Check for thread fiber in feed roller bearings.  2) Check for loose or broken feed timing belt. Make sure the timming belt is not tight.  Run with 1/8” (3mm) side to side free play total ¼” (6mm). 2.1) Check for loose setscrews on feed motor or grit roller driven shaft. 2.2) Check for worn bearings. 2.3) Worn feed or pressure grit rollers. 2.4) Rheostat out of adjustment – Call for service support.  2.5) Defective feed motor. 2.6) Motor runs for a while and loses power.  Let system cool and it works. – check room temperature to spec.  DC motors loose power if overheated. ', ''),
+	(161, 'Web will not sublimate  completely', 2, '1) IR lamp(s) out. 2) Defective IR sensor. 3) Defective sensor controller. 4) Blocked filters. 5) Web is not tracking through \r\nthe middle of the heat chamber. ', '1) Replace blown lamp(s). 1.1) Inspect wire leads from lamps . 1.2) Check for loose terminal block connection. 2) Replace. 3) Replace.  4) Replace filters. 5) Move the LOKPRINT II so the web tracks in the center of the heat lamps.  5.1)  Check feed springs and replace', ''),
+	(162, 'Smoke coming from the front  of Heat Chamber.', 2, '1) Blocked filter.  2) Fan not operational.  3) Web broken or fallen on IR lamps causing excessive build up on lamps', '1) Replace filter(s).  2) Check blown fuse. 2.1) Replace defective fan. 3) Stop system and allow the build up to \r\nburn off.', ''),
+	(163, 'No lights on / in LOKRPINT II  Check Stacker error cannot be  cleared.  System will not start.', 2, '1) Power switch position.  2) Power switch over current trip. 3) Outlet / power fault. ', '1) Toggle power switch on back of LOKRPINT II box.  2) Confirm power switch rating matches \r\nmachine line voltage. 2.1) Check lamp-wiring matches machine line voltage. 2.2) Check SCR Controller strapping \r\nmatches machine line voltage. 3) Plant electrician.', ''),
+	(164, 'READY light is not on.  Check  Stacker error cannot be  cleared.  System will not start.', 2, '1) Insufficient time since the Fuji sensed the top of the inner oven at 400º.  2) READY light bulb fault.  3) Wiring error / fault. 4) U1 Controller programming error. 5) U1 offset error. 6) U2 Monitor programming error.  7) U2 offset error.  8) SP / SP2 switch bale \r\nmisalignment or fault. 9) Oven lamp wiring error / fault. 10) U2 Sensor fault.  11) U2 Monitor fault.  12) U1 Sensor fault. 13) U1 Controller fault.', '1) Wait 8 minutes after the C light on the Fuji turns on.  2) Evaluate / replace bulb as needed. 3) Confirm proper connection of 7-pin \r\nconnector between the LOKRPINT II and the 676. 3.1) Confirm wiring of all component(s) that were replaced.  4) AVERY DENNISON service to confirm / reprogram as needed.  5) AVERY DENNISON service to confirm / set exit temperature as needed. 6) AVERY DENNISON service to confirm / reprogram as needed.  7) AVERY DENNISON service to confirm / set offset as needed.  8) Adjust / evaluate / replace oven position switch. 9) Check lamp wiring matches machine line voltage / evaluate / replace as needed.  10) Evaluate / replace sensor, requires AVERY DENNISON service to confirm / set exit temperature as needed.  11) Evaluate / replace U2, requires AVERY DENNISON service to confirm / set exit temperature as needed. 12) Evaluate / replace sensor, requires \r\nAVERY DENNISON service to confirm / set exit temperature as needed.  13) Evaluate / replace U1, requires AVERY \r\nDENNISON service to confirm / set exit temperature as needed. ', ''),
+	(165, 'READY light is on.  Check  Stacker error can be cleared.   Oven travels out or attempts to  travel out and immediately  retracts.', 2, '1) Oven obstacle.  2) Oven to guard insulation strip misalignment.  3) Oven drive line fault, mechanical or electrical. 4) No web.  5) Web not centered in web sensor. 6) Web sensor IR shield missing. 7) Web sensor / wiring fault.', '1) Remove / adjust obstacle so that oven travels freely.  2) Adjust insulation strip for full oven engagement without interference.  3) Adjust sensor for proper oven position / evaluate / replace sensor. 4) Evaluate the drive line for mechanical binds / problems.  4.1) Confirm proper connection of 15-pin connector between the LOKPRINT II and the 676. 5) Thread the web through the LOKPRINT II\r\n6) Center the web in the LOKPRINT II web sensor.  7) Reinstall the IR shield.  8) Evaluate / replace the web sensor. ', ''),
+	(166, 'System stops during batch  READY light goes out.  Check Stacker error cannot be  cleared for 8 minutes.  System  will not start.', 2, 'U1 Controller programming error. U1 offset error. U2 Monitor programming error. U2 offset error. Oven lamp wiring error / fault. U1 Sensor fault. U2 Sensor fault. U1 Controller fault. U2 Monitor fault. ', 'AVERY DENNISON service to confirm / set SP2 as needed. AVERY DENNISON service to confirm / set exit temperature as needed. AVERY DENNISON service to confirm / reprogram as needed.  AVERY DENNISON service to confirm / set offset as needed.  Evaluate the four lamps / wiring / replace as needed.  Evaluate / replace sensor, requires AVERY DENNISON service to confirm / set exit temperature as needed.  Evaluate / replace sensor, requires AVERY DENNISON service to confirm / set exit temperature as needed.  Evaluate / replace U1, requires AVERY DENNISON service to confirm / set exit temperature as needed.  Evaluate / replace U2, requires AVERY DENNISON service to confirm / set exit temperature as needed.', ''),
+	(167, 'READY light is on. Check  Stacker error cannot be  cleared. System will not start.', 2, 'LOKPRINT II guard open.  Finishing Station stacker platform \r\nat bottom of its travel. \r\nWeb present sensor is not \r\ncovered by the web \r\nWeb tension assembly at the end \r\nof the printer sensor is not \r\ntriggered ', '1) Close guard.  2) Guard switch out of adjustment. Remove labels and raise platform. \r\n \r\nMove LKP II so the web tracks in the \r\nmiddle of the feed roller \r\nWeb is not threaded through tension \r\ndevice correctly – see threading in this \r\ndocument. \r\nSensor arm on the cam is not setting in \r\nthe low setting when arm is in the up \r\nposition – adjust cam location', ''),
+	(168, 'Finishing Station displays  Close Guard.', 2, 'Finishing Station guard open.', 'Close guard.', ''),
+	(169, 'U1 readout > 800º.', 2, 'U1 Sensor misalignment.  U1 Controller programming error.  U1 Sensor fault.  U1 Controller fault.  SCR fault.', 'AVERY DENNISON realign sensor.  AVERY DENNISON service to confirm / \r\nreprogram as needed.   Evaluate / replace IR sensor, requires \r\nAVERY DENNISON service to confirm / \r\nset exit temperature as needed.  Evaluate / replace  \r\nU1, requires AVERY DENNISON \r\nservice to confirm / set exit temperature \r\nas needed.   Evaluate / replace SCR.', ''),
+	(170, 'READY light is on.  Oven travels out or attempts to travel out and immediately  retracts. Check stacker error  can be cleared.', 2, 'Oven out sensor mis-adjustment.  Oven to guard insulation strip \r\nmisalignment.    Guard switch bale(s) misadjusted.', 'Adjust the oven out sensor mount \r\nbracket position as needed.  Adjust the guard insulator strip as \r\nneeded.  Adjust the switch bale(s) as needed.', ''),
+	(171, 'READY light is not on.  Check Stacker error can be  cleared. ', 2, '7 pin connector between the \r\nLOKPRINT II and 676 partially or \r\ncompletely disconnected. ', 'Reinsert the 7-pin connector.', ''),
+	(172, 'System starts but does not pull  fabric though the oven.', 2, 'Finishing Station sensor \r\nmisadjusted.', 'Align sensor and fabric so that the \r\nsensor mark is the first thing the sensor \r\nwill see at restart.   Adjust the sensor sensitivity to respond \r\nto the sense mark on the fabric.', ''),
+	(173, 'System stops during batch  READY light is on.  Check Stacker error can be  cleared.', 2, 'Finishing Station cut length \r\nmisadjusted', 'Set the cut length on the Finishing \r\nStation front panel to match the \r\ndistance between the sense marks on \r\nthe fabric after the LOKPRINT II oven.', ''),
+	(174, 'Finishing Station displays  Align Stock ', 2, 'LOKPRINT II exit temperature too \r\nhigh. ', 'AVERY DENNISON service to confirm / \r\nset exit temperature as needed.', ''),
+	(175, 'Software 259 error', 2, 'The temperature measured by the Fuji monitor falls below the set point', 'Reconfiguring the SP2 Variable Value in the Fuji monitor', ''),
+	(176, 'Software 260 error', 2, 'Caused by the Web Tensioner, Arms \r\nDown Sensor or the SS Finisher if one is attached.', 'Check the Out sensor (C Sensor)', '');
 /*!40000 ALTER TABLE `errores` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. inventary
+-- Dumping structure for table macfilter.inventary
 CREATE TABLE IF NOT EXISTS `inventary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_number` int(11) DEFAULT NULL,
@@ -225,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `inventary` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.inventary : ~55 rows (environ)
+-- Dumping data for table macfilter.inventary: ~50 rows (approximately)
 /*!40000 ALTER TABLE `inventary` DISABLE KEYS */;
 INSERT INTO `inventary` (`id`, `item_number`, `quantity`, `subinventary`, `sigle`, `locator`, `statut`) VALUES
 	(1, 30, 4, 1, 1, 1, 'Exists'),
@@ -285,7 +302,7 @@ INSERT INTO `inventary` (`id`, `item_number`, `quantity`, `subinventary`, `sigle
 	(58, 691, 0, 1, 1, 1, 'Exists');
 /*!40000 ALTER TABLE `inventary` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. items
+-- Dumping structure for table macfilter.items
 CREATE TABLE IF NOT EXISTS `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_number` varchar(60) DEFAULT NULL,
@@ -296,9 +313,9 @@ CREATE TABLE IF NOT EXISTS `items` (
   `printer_model` int(11) DEFAULT NULL,
   `photo_link` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1239 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1312 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.items : ~1 041 rows (environ)
+-- Dumping data for table macfilter.items: ~1,232 rows (approximately)
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
 INSERT INTO `items` (`id`, `item_number`, `item_desc`, `price`, `part_number`, `part_description`, `printer_model`, `photo_link`) VALUES
 	(1, '05581201', 'Frame, Upright (ref only)', 0, 1, 'Unwind Assembly – Gen 1', 5, 'picturepart/1627161623_Unwind Assembly.png'),
@@ -1532,31 +1549,104 @@ INSERT INTO `items` (`id`, `item_number`, `item_desc`, `price`, `part_number`, `
 	(1235, '05581104-1', 'FAN, 12V HARNESSED', 0, 7, 'Cooling Fans Assembly ', 7, 'picturepart/1636603024_Cooling Fans Assembly.PNG'),
 	(1236, '05991638', 'SCREW, 6-32 X 1.250 PHCS', 0, 8, 'Cooling Fans Assembly ', 7, 'picturepart/1636603024_Cooling Fans Assembly.PNG'),
 	(1237, '05621006', 'BRACKET, AIR DEFLECTOR', 0, 9, 'Cooling Fans Assembly ', 7, 'picturepart/1636603024_Cooling Fans Assembly.PNG'),
-	(1238, '05991379', '10-32 X 3/8 PHPS', 0, 10, 'Cooling Fans Assembly ', 7, 'picturepart/1636603024_Cooling Fans Assembly.PNG');
+	(1238, '05991379', '10-32 X 3/8 PHPS', 0, 10, 'Cooling Fans Assembly ', 7, 'picturepart/1636603024_Cooling Fans Assembly.PNG'),
+	(1239, '05628010', 'FRAME, STACKER, 700 ', 0, 1, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1240, '05588029', 'BRACKET, DIODE MOUNT, FRONT', 0, 6, 'Stacker Assembly ', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1241, '05588031', 'COVER, LABEL SENSOR', 0, 7, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1242, '05628003', 'ASSY, PLATFORM MOUNT ', 0, 11, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1243, '05991378', '10-32 X 3/8 PHILLIPS FLAT HEAD SCREW', 0, 12, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1244, '05628005', 'ASSY, PLATFORM LABEL', 0, 13, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1245, '05990325', 'E-RING, 3/16', 0, 14, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1246, '05628006', 'SHAFT, LOCK', 0, 15, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1247, '05990486', 'SNAP RING, 3/8 E-RING', 0, 16, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1248, '05991439', 'SPRING, PIN LOCK', 0, 17, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1249, '05996159', 'SWITCH ROCKER, SPDT', 0, 18, 'Stacker Assembly ', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1250, '05989986', '4-40 ES NUT', 0, 21, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1251, '05581177', 'HARNESS, DOWN STACKER ASSY, PROGRAMMED WITH  GEAR', 0, 22, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1252, '05628033-1', 'COVER, DOWN STACKER, 700 ', 0, 36, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1253, '05991442', '8-32 X 3/8 PHILLIPS FLAT HEAD SCREW', 0, 37, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1254, '05628012', 'SPACER, STACKER SLIDE', 0, 39, 'Stacker Assembly', 7, 'picturepart/1636635713_Stacker Assembly (Sheet 1 of 2).PNG'),
+	(1255, '05628004', 'BRACKET, STACKER MOUNT', 0, 2, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1256, '05990273', 'WASHER, #10 BELLEVILLE', 0, 3, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1257, '05990104', '10-32 E-S NUT', 0, 4, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1258, '05990148', '1/4-20 ES NUT', 0, 5, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1259, '05588028 ', 'BRACKET, DIODE MOUNT REAR', 0, 8, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1260, '05991455', '10-32 X 5/8 THUMB SCREW', 0, 9, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1261, '05588001A ', 'PLATFORM SLIDE, ALT', 0, 10, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1262, '05991510 ', 'BALL  BEARING , 16mm O.D. x 8mm I.D. FLG', 0, 19, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1263, '05628002', 'SHAFT, MAIN DRIVE', 0, 20, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1264, '05991372', '6-32 X 250 PHILLIPS PAN HEAD SCREW ', 0, 23, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1265, '05990038', '6-32 HEX NUT', 0, 24, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1266, '117954', 'GEAR-RIBBON 75T ', 0, 25, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1267, '117955', 'GEAR-RIBBON 54T-15T', 0, 26, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1268, '05990327', 'E-RING, 5/16', 0, 27, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1269, '05991367', 'E-RING, 9/64', 0, 28, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1270, '05990051', '8-32 X 3/8 SHCS', 0, 29, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1271, '05991419', 'DRIVE, SPROCKET #25, 16T', 0, 30, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1272, '05588037', 'ASSY, CHAIN TENSION', 0, 31, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1273, '05991418', 'SPROCKET, STACKER, 10T', 0, 32, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1274, '05991419A', 'SPROCKET, STACKER 16T ALTERED', 0, 33, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1275, '05990058', '8-32 X 1/4 KNURLED CUP POINT', 0, 34, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1276, '05990069', '8-32 HEX NUT', 0, 35, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1277, '05628011', 'CHAIN, STACKER DRIVE', 0, 38, 'Stacker Assembly', 7, 'picturepart/1636637326_Stacker Assembly (Sheet 2 of 2).PNG'),
+	(1278, '05197319', 'TORSION SPR FRONTDC KNIFE', 0, 1, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1279, '05357029', 'TORSION SPR BACK, DC KNIFE', 0, 2, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1280, '05357093', 'ASSEMBLY, STATIONARY KNIFE', 0, 3, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1281, '05448010', 'STATIC BRUSH', 0, 4, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1282, '05517021', 'BLOCK, SHEAR ADJUST', 0, 5, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1283, '05627024', 'BRACKET, BRIDGED BLADE', 0, 6, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1284, '05627091', 'ASSEMBLY, GROUND ROTARY ', 0, 7, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1285, '05627301', 'SHAFT, SHORT FEED NIP EXT', 0, 8, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1286, '05627302', 'FLEX BEAM COUPLING ', 0, 9, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1287, '05627303', 'BRKT, SHORT FEED NIP STRIPPER', 0, 10, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1288, '05627304', 'O-RING, SHORT FEED', 0, 11, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1289, '05627305', 'BRKT, SHORT FEED FRONT', 0, 12, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1290, '05627306', 'BRKT, SHORT FEED REAR', 0, 13, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1291, '05627307', 'BRKT, SHORT FEED MOUNT, REAR', 0, 14, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1292, '05627308', 'BRKT, SHORT FEED MOUNT, FRONT', 0, 15, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1293, '05627309', 'SHAFT, SHORT FEED INNER IDLER', 0, 16, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1294, '05627310', 'SHAFT, SHORT FEED OUTER IDLER', 0, 17, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1295, '05627311', 'SHAFT, SHORT FEED INNER DRIVE', 0, 18, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1296, '05627312', 'SHAFT, SHORT FEED OUTER DRIVE', 0, 19, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1297, '05627313', 'BRKT, SHORT FEED STACKER MOUNT', 0, 20, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1298, '05627318', 'ASSY, KNIFE GUARD', 0, 21, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1299, '05627319', 'BASE, SHORT FEED KNIFE SUPPORT', 0, 22, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1300, '05990015', '6-32 X 1/4 SHCS', 0, 23, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1301, '05990025', '6-32 X 1/4 SET SCREW', 0, 24, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1302, '05990055', '8-32 X 3/8 FHCS', 0, 25, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1303, '05990057', '8-32 X 1/8 KNURLED CUP POINT', 0, 26, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1304, '05990066', '8-32 X 1/4 BHCS', 0, 27, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1305, '05991253', '6-32 X 3/16 BHCS', 0, 28, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1306, '05991454', '8-32 X 1/4" THUMB SCREW', 0, 29, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1307, '05991523', 'SPRING, COMP 500/600 NIP ASSEMBLY ', 0, 30, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1308, '05991651', '6-32 X 7/8 BHCS', 0, 31, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1309, '05999001', 'R6FF BEARING', 0, 32, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1310, '05999097', 'BUSHING, FL 1/4 X 3/8 X 3/16', 0, 33, 'Short Feed Assembly', 7, 'picturepart/1636640007_Short Feed Assembly.PNG'),
+	(1311, '561203', 'Cover, Chassis, Main', 0, 1, 'Cover Assembly', 2, 'picturepart/1637152604_Cover Assembly.PNG');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. locators
+-- Dumping structure for table macfilter.locators
 CREATE TABLE IF NOT EXISTS `locators` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `locator` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.locators : 2 rows
+-- Dumping data for table macfilter.locators: 2 rows
 /*!40000 ALTER TABLE `locators` DISABLE KEYS */;
 INSERT INTO `locators` (`id`, `locator`) VALUES
 	(1, 'FG-S'),
 	(2, 'RM-S');
 /*!40000 ALTER TABLE `locators` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. sigles
+-- Dumping structure for table macfilter.sigles
 CREATE TABLE IF NOT EXISTS `sigles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sigle` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.sigles : 5 rows
+-- Dumping data for table macfilter.sigles: 5 rows
 /*!40000 ALTER TABLE `sigles` DISABLE KEYS */;
 INSERT INTO `sigles` (`id`, `sigle`) VALUES
 	(1, 'EA'),
@@ -1566,20 +1656,20 @@ INSERT INTO `sigles` (`id`, `sigle`) VALUES
 	(5, 'CS');
 /*!40000 ALTER TABLE `sigles` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. subinventary
+-- Dumping structure for table macfilter.subinventary
 CREATE TABLE IF NOT EXISTS `subinventary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sub` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.subinventary : 1 rows
+-- Dumping data for table macfilter.subinventary: 1 rows
 /*!40000 ALTER TABLE `subinventary` DISABLE KEYS */;
 INSERT INTO `subinventary` (`id`, `sub`) VALUES
 	(1, 'HT TCK CEN');
 /*!40000 ALTER TABLE `subinventary` ENABLE KEYS */;
 
--- Listage de la structure de la table macfilter. users
+-- Dumping structure for table macfilter.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fullname` varchar(100) DEFAULT NULL,
@@ -1596,7 +1686,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Listage des données de la table macfilter.users : 1 rows
+-- Dumping data for table macfilter.users: 1 rows
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `fullname`, `about`, `company`, `job`, `country`, `address`, `phone`, `email`, `username`, `password`, `image`) VALUES
 	(1, 'Macceau Marcelin', 'I am a software developer, I have knowledge of Java, C #, C ++, PHP, JavaScript, Perl, etc ... with more than 3 years of experience. Also i\'m a Field Service Support of Avery Dennison.', 'Avery Dennison', 'Field Service Support', 'Haiti', 'Trou du Nord', '(509) 3243-9955 / 3773-0389', 'macceau.infos@gmail.com', 'zamora', 'RWx6YW1vcmF0YTI2', 'assets/img/1635780992_IMG_20170607_133604_792.jpg');
