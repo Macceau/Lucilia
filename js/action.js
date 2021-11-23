@@ -12,7 +12,7 @@ $(document).ready(function(e){
      $('#inputIsValidinventary').hide();$('#inputIsInvalidinventary').hide(); $('#avisexport').hide(); let machineedition=false;
      let edit=false; $('#refreshmachine').hide(); $('#goodalert').hide(); $('#badalert').hide(); $('#badusername').hide();
      $('#goodpassword').hide(); $('#badpassword').hide(); $('#badconfirmation').hide(); FullMachine(); locatoredition=false; FullLocator();
-     let subedition=false; FullSub(); let sigleedition=false; FullSigle();
+     let subedition=false; FullSub(); let sigleedition=false; FullSigle(); let partedition=false;FullParts();
      
      //-------------------------------fin----------------------------------------
      
@@ -31,10 +31,23 @@ $(document).ready(function(e){
               });
               $('#printer').html(template);
               $('#printers').html(template);
+              $('#sprinter').html(template);
               $('#errorprinter').html(template);
             }
            });
       }
+      $(document).on('change','#printer',function(e){
+        let man=$('#printer').val();
+        $.post('phpFiles/Selectparts.php',{man},function(response){
+          let template='';
+         // console.log(response);
+          let repons=JSON.parse(response);
+          repons.forEach(rep=>{
+            template+=`<option value="${rep.part}">${rep.part}</option>`
+          });
+          $('#partdescription').html(template);
+        });
+      });
 
       function FullItem(){
         $.ajax({
@@ -60,6 +73,12 @@ $(document).ready(function(e){
 
       $(document).on('click','#refreshmachine', function(e){
         FullPrinter();
+        e.preventDefault();
+      }); 
+
+      $(document).on('click','#refreshmachines', function(e){
+        FullPrinter();
+        e.preventDefault();
       }); 
     
     $(document).on('click','#addcreateItem', function(e){
@@ -110,18 +129,6 @@ $(document).ready(function(e){
           return false;
       }
   });
-
-  /*  $("#exten").change(function() {
-      var file = this.files[0];
-      var imagefile = file.type;
-      var match= ["MP4","mp4","MOV","mov","WMV","wmv","FLV","flv","avi","AVI"];
-      if(!((imagefile==match[0])|| (imagefile==match[1])|| (imagefile==match[2]) || (imagefile==match[3]) || (imagefile==match[4])
-      || (imagefile==match[5]) || (imagefile==match[6]) || (imagefile==match[7]) || (imagefile==match[8]) || (imagefile==match[9]))){
-          alert('Oups! The video format is incorrect, please use one of this format (MP4 / MOV / WMV / FLV / AVI).');
-          $("#exten").val('');
-          return false;
-      }
-  });*/
 
     $("#property").change(function() {
        let param=$('#property').val();
@@ -190,7 +197,7 @@ $(document).ready(function(e){
           let template='';
           //console.log(repons);
           template+=`
-              <div class="modal-body">
+              <div class="modal-body" style="overflow-y:scroll; height:400px;">
                 <img class="card-img-top" src="${repons.link}" alt="Card image cap">
               </div>
                 <div class="modal-footer">
@@ -217,17 +224,20 @@ $(document).ready(function(e){
         let element=$(this)[0].parentElement.parentElement.parentElement;
        let id= $(element).attr('taskid');
        $.post('phpFiles/SelectSingleItems.php', {id} , function(response){
-         let template='';
+         let template=''; let template1='';
           const repons=JSON.parse(response);
           template=`
             <option value="${repons.code}">${repons.printer}</option>
           `
+          template1=`
+          <option value="${repons.partdesc}">${repons.partdesc}</option>
+        `
           $('#hiddenparam').val(repons.id);
           $('#itemnumber').val(repons.item);
           $('#itemdescription').val(repons.itemdesc);
           $('#price').val(repons.price);
           $('#partnumber').val(repons.part);
-          $('#partdescription').val(repons.partdesc);
+          $('#partdescription').html(template1);
           $('#printer').html(template);
           edition=true;
           $('#refreshmachine').show();
@@ -1133,18 +1143,25 @@ $(document).ready(function(e){
     });
 
     $(document).on('click','#InsertMachine', function(e){
-      let machine=$('#machinename').val();
-      let id=$('#idmachinename').val();
+      let datos=new FormData($('#newmachine')[0]);
       let url=machineedition===false ? 'phpFiles/createMachine.php' : 'phpFiles/editMachine.php';
-      $.post(url,{machine,id},function(response){
-            // console.log(response);
-             FullMachine();
-             FullPrinter();
-             $('#newmachine').trigger('reset');
-             machineedition=false;
-     });
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: datos,
+        contentType: false,
+        cache: false,
+        processData:false,
+        success: function(response){
+          //console.log(response);
+          FullMachine();
+          FullPrinter();
+          $('#newmachine').trigger('reset');
+          machineedition=false;
+        }
+      });
        e.preventDefault();
-     }); 
+    }); 
 
     function FullMachine(){
       $.ajax({
@@ -1160,6 +1177,9 @@ $(document).ready(function(e){
                 <th scope="row">${rep.id}</th>
                 <td>${rep.device}</td>
                 <td>
+                <button class="btn btn-primary" id="viewspicture" data-bs-toggle="modal" data-bs-target="#mediumsModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                  <i class="bi bi-camera"></i>
+                </button>
                 <button type="button" id="editmachines" class="btn btn-success"><i class="bi bi-pencil"></i></button>
                 <button type="button" id="deletemachines" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                 </td>
@@ -1169,7 +1189,8 @@ $(document).ready(function(e){
               <div class="activity-item d-flex">
               <div class="activite-label">${rep.id}</div>
               <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-              <div class="activity-content">${rep.device}</div>
+              <div class="activity-content"><a href="#" data-bs-toggle="modal" data-bs-target="#largesModal" title="Show all Parts of this Machine." id="showparts" taskpart="${rep.id}">${rep.device}</a></div>
+              
               </div><!-- End activity item-->
             `
             });
@@ -1179,7 +1200,32 @@ $(document).ready(function(e){
          });
      }
 
-     $(document).on('click','#editmachines', function(e){
+     $(document).on('click','#viewspicture', function(e){
+      let element=$(this)[0].parentElement.parentElement;
+      let id= $(element).attr('taskid');
+      $.post('phpFiles/deviceEdit.php',{id},function(response){
+        let repons=JSON.parse(response);
+        let template='';
+          //console.log(repons);
+          template+=`
+              <div class="modal-body" style="overflow-y:scroll; height:400px;">
+                <img class="card-img-top" src="${repons.photo}" alt="Card image cap">
+              </div>
+                <div class="modal-footer">
+                  
+                    
+                    <button type="button" class="btn btn-warning mb-2">
+                    Machine Name: <span class="badge bg-white text-primary">${repons.device}</span>
+                    </button>
+                  
+                </div>
+                `
+            $('#showedpictures').html(template);
+      });  
+      e.preventDefault();
+    });
+
+    $(document).on('click','#editmachines', function(e){
       let element=$(this)[0].parentElement.parentElement;
       let id= $(element).attr('taskid');
       $.post('phpFiles/deviceEdit.php',{id},function(response){
@@ -1402,5 +1448,167 @@ $(document).ready(function(e){
       }
       e.preventDefault();
     });
+
+    $(document).on('click','#showparts', function(e){
+      let element=$(this)[0];
+      let id= $(element).attr('taskpart');
+      var i=0;
+      $.post('phpFiles/SelectPartMachine.php',{id},function(response){
+        
+        let repons=JSON.parse(response);
+        let template='';let template1='';
+        //console.log(repons.image);
+          
+          repons.forEach(rep=>{
+            i++;
+            template=`
+               <img src="${rep.image}" title="${rep.device}" class="">
+                   <button type="button" class="btn btn-primary mb-2">
+                     <span class="badge bg-white text-primary">${rep.device}</span>
+                    </button>
+                `
+          template1+=`
+            <tr taskid="${rep.id}" >
+            <td>${i}</td>
+            <td>${rep.part}</td>
+          </tr>
+            `
+          });
+            $('#newpartimage').html(template);
+            $('#showedpartlist').html(template1);
+      });  
+      e.preventDefault();
+    });
+
+    $(document).on('click','#InsertParts', function(e){
+      const datos={
+        partname:$('#partname').val(),
+        machine:$('#printer').val(),
+        id:$('#idpartname').val()
+      };
+      
+      let url=partedition===false ? 'phpFiles/addpart.php' : 'phpFiles/editPart.php';
+      $.post(url,datos,function(response){
+            // console.log(response);
+             FullParts();
+             $('#newpart').trigger('reset');
+             partedition=false;
+     });
+       e.preventDefault();
+     }); 
+
+     function FullParts(){
+      $.ajax({
+          type:'GET',
+          url:'phpFiles/SelectPart.php',
+          success:function(html){
+            //console.log(html);
+            let repons=JSON.parse(html);
+            let template=''; 
+            
+            repons.forEach(rep=>{
+              template+=`
+              <tr taskid="${rep.id}" taskprinter="${rep.code}">
+                <td>${rep.part}</td>
+                <td>${rep.device}</td>
+                <td>
+                <button class="btn btn-primary" id="sviewpicture" data-bs-toggle="modal" data-bs-target="#smediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                  <i class="bi bi-camera"></i>
+                </button>
+                <button type="button" id="editparts" class="btn btn-success"><i class="bi bi-pencil"></i></button>
+                <button type="button" id="deleteparts" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+              `
+              
+            });
+            $('#partlist').html(template);
+          }
+         });
+     }
+
+     $(document).on('click','#sviewpicture', function(e){
+      let element=$(this)[0].parentElement.parentElement;
+      let id= $(element).attr('taskid');
+      let code= $(element).attr('taskprinter');
+      $.post('phpFiles/partShows.php',{id,code},function(response){
+        let repons=JSON.parse(response);
+        let template='';
+          //console.log(repons);
+          template+=`
+              <div class="modal-body" style="overflow-y:scroll; height:400px;">
+                <img class="card-img-top" src="${repons.photo}" alt="Card image cap">
+              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning mb-2">
+                     Part Name: <span class="badge bg-white text-primary">${repons.part}</span>
+                    </button>
+                    <button type="button" class="btn btn-primary mb-2">
+                     Machine: <span class="badge bg-white text-primary">${repons.device}</span>
+                    </button>
+                </div>
+                `
+            $('#partpictures').html(template);
+      });  
+      e.preventDefault();
+    });
+
+     $(document).on('click','#editparts', function(e){
+      let element=$(this)[0].parentElement.parentElement;
+      let id= $(element).attr('taskid');
+      let code= $(element).attr('taskprinter');
+      $.post('phpFiles/partEdit.php',{id,code},function(response){
+        let repons=JSON.parse(response);
+        let template="";
+        template+=`
+                 <option value="${repons.kod}">${repons.device}</option>
+                `
+        //console.log(response);
+        $('#partname').val(repons.part);
+        $('#idpartname').val(repons.id);
+        $('#printer').html(template);
+        partedition=true;
+      });  
+      e.preventDefault();
+    });
+
+    $(document).on('click','#deleteparts', function(e){
+      if(confirm('Do you really want to delete this information?')){
+       let element=$(this)[0].parentElement.parentElement;
+       let id= $(element).attr('taskid');
+      $.post('phpFiles/deletepart.php', {id} , function(response){
+          FullParts();
+      });
+       
+      }
+      e.preventDefault();
+    });
+
+    $("#sprinter").change(function() {
+      let man=$('#sprinter').val();
+      $.post('phpFiles/SelectParts.php',{man},function(response){
+        let repons=JSON.parse(response);
+            let template=''; 
+            //console.log(response);
+            repons.forEach(rep=>{
+              template+=`
+              <tr taskid="${rep.id}" taskprinter="${rep.code}">
+                <td>${rep.part}</td>
+                <td>${rep.device}</td>
+                <td>
+                <button class="btn btn-primary" id="sviewpicture" data-bs-toggle="modal" data-bs-target="#smediumModal" data-toggle="tooltip" data-placement="top" title="View Picture">
+                  <i class="bi bi-camera"></i>
+                </button>
+                <button type="button" id="editparts" class="btn btn-success"><i class="bi bi-pencil"></i></button>
+                <button type="button" id="deleteparts" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                </td>
+              </tr>
+              `
+              
+            });
+            $('#partlist').html(template);
+      });
+     });
+
 
 });

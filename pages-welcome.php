@@ -171,6 +171,58 @@ $manage=$_SESSION['usuario'];
     </div>
   </div>
 </div><!-- End Recent Activity -->
+         <!-- Basic Modal -->
+            <div class="modal fade" id="largesModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title"> <i class="bi bi-bar-chart-steps"></i> Machine Detail</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div  > 
+                          <div class="row">
+                            <div class="col-lg-4">
+
+                              <div class="card">
+                                <div class="card-body">
+                                <h3 class="card-title">Picture</h3>
+                                    <!-- Vertical Form -->
+                                  <form class="row g-3" id="newpartimage">
+                                    
+                                  </form><!-- Vertical Form -->
+                                </div>
+                              </div>
+
+                            </div>
+
+                            <div class="col-lg-8" >
+
+                              <div class="card" style="overflow-y:scroll; height:400px;">
+                                <div class="card-body">
+                                  <h3 class="card-title">Parts Table Listed</h3>
+                                    <!-- Table with stripped rows -->
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Part Name</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="showedpartlist" >
+                                      
+                                      </tbody>
+                                  </table>
+                                  <!-- End Table with stripped rows -->
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <!-- End Basic Modal-->
 
 </div><!-- End Right side columns -->
       </div>

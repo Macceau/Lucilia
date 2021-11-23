@@ -109,35 +109,35 @@ $manage=$_SESSION['usuario'];
                       <p>
                     <form action="" method="post" class=""  id="additem" enctype="multipart/form-data">
                         <div class="row form-group">
-                              <div class="col col-md-6">
+                           <div class="col col-md-6">
                               <label for="nf-email" class=" form-control-label">Item Number</label>
                               <input type="text" name="itemnumber" id="itemnumber"  class="form-control">
                                 <input type="hidden" name="hiddenparam" id="hiddenparam"  class="form-control">
                             </div>
                             <div class="col col-md-6">
-                             <label for="nf-email" class=" form-control-label">Part Number</label>
-                               <input type="text" name="partnumber" id="partnumber" class="form-control">
-                            </div>
+                                <label for="nf-email" class=" form-control-label">Machines</label>
+                                  <select name="printer" id="printer" class="form-control"></select>
+                              </div>
                         </div>
                         <div class="row form-group">
                           <div class="col col-md-6">
                              <label for="nf-email" class=" form-control-label">Part Description</label>
-                              <input type="text" name="partdescription" id="partdescription"  class="form-control">
+                              <select name="partdescription" id="partdescription" class="form-control"></select>
                            </div>
                            <div class="col col-md-6">
-                            <label for="nf-email" class=" form-control-label">Price</label>
-                            <input type="text" name="price" id="price" class="form-control" placeholder="0.00" required>
-                           </div>
+                             <label for="nf-email" class=" form-control-label">Part Number</label>
+                               <input type="text" name="partnumber" id="partnumber" class="form-control">
+                          </div>
                         </div>
                         <div class="row form-group">
-                             <div class="col col-md-6">
-                                <label for="nf-email" class=" form-control-label">Machines</label>
-                                  <select name="printer" id="printer" class="form-control"></select>
-                              </div>
-                            <div class="col col-md-6">
+                          <div class="col col-md-6">
                            <label for="nf-email" class=" form-control-label">Picture</label>
                             <input type="file" id="partimage" name="partimage" class="form-control">
                             </div>
+                            <div class="col col-md-6">
+                            <label for="nf-email" class=" form-control-label">Price</label>
+                            <input type="text" name="price" id="price" class="form-control" placeholder="0.00" required>
+                           </div>
                           </div>
                          <div class="row form-group">
                           <div class="col col-md-12">

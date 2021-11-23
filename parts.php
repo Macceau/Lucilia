@@ -22,7 +22,7 @@ $manage=$_SESSION['usuario'];
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>LuciliaFinder / New Machine</title>
+  <title>LuciliaFinder / Part</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -76,32 +76,33 @@ $manage=$_SESSION['usuario'];
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="pages-welcome.php">Home</a></li>
           <li class="breadcrumb-item">Configurations</li>
-          <li class="breadcrumb-item active">Welcome</li>
+          <li class="breadcrumb-item active">Machine Parts</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
 
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">Create a New Machine</h3>
+            <h3 class="card-title">Adding Parts</h3>
                 <!-- Vertical Form -->
-              <form class="row g-3" id="newmachine" method="post" enctype="multipart/form-data">
+              <form class="row g-3" id="newpart">
                 <div class="col-12">
-                  <label for="inputNanme4" class="form-label">Machine Name</label>
-                  <input type="text" class="form-control" name="machinename" id="machinename">
-                  <input type="text" class="form-control" name="idmachinename" id="idmachinename" hidden>
+                  <label for="inputNanme4" class="form-label">Part Name</label>
+                  <input type="text" class="form-control" name="partname" id="partname">
+                  <input type="text" class="form-control" name="idpartname" id="idpartname" hidden>
                 </div>
                 <div class="col-12">
-                  <label for="nf-email" class=" form-control-label">Picture</label>
-                   <input type="file" id="partimage" name="partimage" class="form-control">
+                  <label for="inputNanme4" class="form-label">Machine</label>
+                  <select name="printer" id="printer" class="form-control"></select>
                 </div>
                 <div class="text-center">
-                  <button type="submit" id="InsertMachine" class="btn btn-primary">Create</button>
-                  <button type="reset" class="btn btn-secondary">Reset</button>
+                   <button type="submit" id="refreshmachines" class="btn btn-warning">Refresh Machine List</button>
+                   <button type="reset" class="btn btn-secondary">Reset</button>
+                  <button type="submit" id="InsertParts" class="btn btn-primary">Create</button>
                 </div>
               </form><!-- Vertical Form -->
             </div>
@@ -109,40 +110,45 @@ $manage=$_SESSION['usuario'];
 
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-8" >
+
           <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Machine Table Listed</h3>
+            <div class="card-body" style="overflow-y:scroll; height:450px;">
+              <h3 class="card-title">Parts Table Listed</h3>
+              <form class="row g-3" id="newparts" method="post" enctype="multipart/form-data">
+                <div class="col-6">
+                    <select name="sprinter" id="sprinter" class="form-control"></select>
+                  </div>
+              
                 <!-- Table with stripped rows -->
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Machine Name</th>
-                    <th scope="col"></th>
+                    <th scope="col">Part Name</th>
+                    <th scope="col">Machine</th>
+                    <th scope="col" ></th>
                   </tr>
                 </thead>
-                <tbody id="machinelist">
+                <tbody id="partlist">
                   
                   </tbody>
               </table>
-              <!-- End Table with stripped rows -->  
-
+              </form>
+              <!-- End Table with stripped rows -->
             </div>
           </div>
 
         </div>
       </div>
     </section>
- <!-- Basic Modal -->
- <div class="modal fade" id="mediumsModal" tabindex="-1">
+    <div class="modal fade" id="smediumModal" tabindex="-1">
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title"> <i class="bi bi-file-image"></i> Picture Viewer</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div  id="showedpictures"> </div>
+                    <div  id="partpictures"> </div>
                   </div>
                 </div>
               </div><!-- End Basic Modal-->
