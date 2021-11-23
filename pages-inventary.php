@@ -102,7 +102,7 @@ $manage=$_SESSION['usuario'];
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Add Item To Inventary</h5>
+                      <h5 class="modal-title"> <i class="bi bi-pencil"></i> Add Item To Inventary</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -176,7 +176,7 @@ $manage=$_SESSION['usuario'];
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Picture Viewer</h5>
+                      <h5 class="modal-title"><i class="bi bi-file-image"></i> Picture Viewer</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -191,7 +191,7 @@ $manage=$_SESSION['usuario'];
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Update Quantity</h5>
+                      <h5 class="modal-title"> <i class="bi bi-arrow-repeat"></i> Update Quantity</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

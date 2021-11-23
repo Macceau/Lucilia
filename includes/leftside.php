@@ -11,6 +11,11 @@
             </a>
           </li>
           <li>
+            <a href="parts.php">
+              <i class="bi bi-circle"></i><span>Adding Parts</span>
+            </a>
+          </li>
+          <li>
             <a href="locator.php">
               <i class="bi bi-circle"></i><span>New Locator</span>
             </a>

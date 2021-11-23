@@ -8,6 +8,7 @@ LEFT JOIN devices d ON d.id=i.printer_model left join subinventary su on su.id=i
 left join sigles si on si.id=inv.sigle left join locators l on l.id=inv.locator order by cod desc";
 
 $sql1="select count(id) as qty from inventary";
+
      $res=SendQuery($sql,$link);
      $res1=SendQuery($sql1,$link);
         if(!$res){
@@ -31,7 +32,7 @@ $sql1="select count(id) as qty from inventary";
              'locator'=>$row["locator"],
              'qty'=>$row["quantity"],
              'status'=>$row["statut"],
-             'count'=>$row1["qty"],
+             'count'=>$row1["qty"]." Of ".$row1["qty"],
              
 
          );

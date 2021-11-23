@@ -13,7 +13,7 @@ $sql1="select count(id) as qty from items";
         }
         $json=array();
         $row1=BringRow($res1);
-        $val=$row1["qty"];
+        $val=$row1["qty"]." Of ".$row1["qty"];
         while($row=BringRow($res)){
          $json[]=array(
              'id'=>$row["id"],
