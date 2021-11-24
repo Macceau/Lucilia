@@ -1536,7 +1536,7 @@ $(document).ready(function(e){
         let template='';
           //console.log(repons);
           template+=`
-              <div class="modal-body" style="overflow-y:scroll; height:400px;">
+              <div class="modal-body" style="overflow:scroll; height:400px;">
                 <img class="card-img-top" src="${repons.photo}" alt="Card image cap">
               </div>
                 <div class="modal-footer">
