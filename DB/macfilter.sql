@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `errores` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table macfilter.errores: ~196 rows (approximately)
+-- Dumping data for table macfilter.errores: ~195 rows (approximately)
 /*!40000 ALTER TABLE `errores` DISABLE KEYS */;
 INSERT INTO `errores` (`id`, `problem`, `printer`, `probable_cause`, `corrective_action`, `video`) VALUES
 	(1, 'LEDs do not light.', 5, '1) Insufficient supply voltage. \n2) Machine is not plugged in.', '1) Look at the line voltage level shown on the back of the printer (see Figure 5). Confirm \nthat the mains line voltage for your location is within the range limits.\n2) Check that both ends of the power cord are plugged in securely.\n3) Confirm that the outlet the machine is plugged into has power.', NULL),
@@ -261,16 +261,16 @@ CREATE TABLE IF NOT EXISTS `inventary` (
   `locator` int(11) NOT NULL DEFAULT '0',
   `statut` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table macfilter.inventary: ~50 rows (approximately)
+-- Dumping data for table macfilter.inventary: ~51 rows (approximately)
 /*!40000 ALTER TABLE `inventary` DISABLE KEYS */;
 INSERT INTO `inventary` (`id`, `item_number`, `quantity`, `subinventary`, `sigle`, `locator`, `statut`) VALUES
 	(1, 30, 4, 1, 1, 1, 'Exists'),
 	(2, 153, 1, 1, 1, 1, 'Exists'),
 	(3, 23, 1, 1, 1, 1, 'Exists'),
 	(4, 65, 2, 1, 1, 1, 'Exists'),
-	(5, 168, 2, 1, 1, 1, 'Exists'),
+	(5, 168, 1, 1, 1, 1, 'Exists'),
 	(6, 194, 2, 1, 1, 1, 'Exists'),
 	(7, 199, 1, 1, 1, 1, 'Exists'),
 	(8, 200, 2, 1, 1, 1, 'Exists'),
@@ -320,7 +320,9 @@ INSERT INTO `inventary` (`id`, `item_number`, `quantity`, `subinventary`, `sigle
 	(55, 66, 1, 1, 1, 1, 'Exists'),
 	(56, 599, 1, 1, 1, 1, 'Exists'),
 	(57, 852, 2, 1, 1, 1, 'Exists'),
-	(58, 691, 2, 1, 1, 1, 'Exists');
+	(58, 691, 2, 1, 1, 1, 'Exists'),
+	(59, 1658, 0, 1, 1, 1, 'Un-exists'),
+	(60, 1735, 2, 1, 1, 1, 'Exists');
 /*!40000 ALTER TABLE `inventary` ENABLE KEYS */;
 
 -- Dumping structure for table macfilter.items
@@ -334,9 +336,9 @@ CREATE TABLE IF NOT EXISTS `items` (
   `printer_model` int(11) DEFAULT NULL,
   `photo_link` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1658 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1736 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table macfilter.items: ~1,535 rows (approximately)
+-- Dumping data for table macfilter.items: ~1,445 rows (approximately)
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
 INSERT INTO `items` (`id`, `item_number`, `item_desc`, `price`, `part_number`, `part_description`, `printer_model`, `photo_link`) VALUES
 	(1, '05581201', 'Frame, Upright (ref only)', 0, 1, 'Unwind Assembly – Gen 1', 5, 'picturepart/1627161623_Unwind Assembly.png'),
@@ -1989,7 +1991,84 @@ INSERT INTO `items` (`id`, `item_number`, `item_desc`, `price`, `part_number`, `
 	(1654, '990056 ', '8-32 x 1/2" Flat hd cap screw ', 0, 16, 'Web Tension Guide Assembly Drawing', 6, 'picturepart/1637781629_Web Tension Guide Assembly Drawing.PNG'),
 	(1655, '990120 ', '1/4-20 x 1/2" Socket hd cap screw', 0, 17, 'Web Tension Guide Assembly Drawing', 6, 'picturepart/1637781629_Web Tension Guide Assembly Drawing.PNG'),
 	(1656, '990058 ', '8-32 Set screw', 0, 18, 'Web Tension Guide Assembly Drawing', 6, 'picturepart/1637781629_Web Tension Guide Assembly Drawing.PNG'),
-	(1657, '130914', 'DISPLAY OVERLAY ', 0, 1, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG');
+	(1657, '130914', 'DISPLAY OVERLAY ', 0, 1, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1658, '130901', 'DISPLAY BEZEL', 0, 2, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1659, '130912  ', 'RUBBER KEYPAD', 0, 3, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1660, '130431  ', 'LCD/KEYBOARD ASSEMBLY', 0, 4, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1661, 'PB00700229  ', 'SCREW, Self Tap Pan HdPlastite #4-20 X 0.250" ', 0, 5, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1662, '130608 ', 'RIBBON CABLE, LCD DISPLAY', 0, 6, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1663, '0999074008 ', 'SCREW, Phil Flanged Hd, M4 x 8', 0, 8, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1664, '130909  ', 'BACK COVER', 0, 9, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1665, '0999074008 ', 'SCREW, Phil Flanged Hd, M4 x 8', 0, 10, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1666, '130916 ', 'SCREW - THUMBSCREW,  M4 X 10 ', 0, 11, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1667, '130963  ', 'COVER- LOWER SUPPLY', 0, 12, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1668, '126892  ', 'POWERCORD 115VAC 72" Long', 0, 15, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1669, '130923 ', 'GUIDE, REAR', 0, 16, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1670, '130922 ', 'GUIDE, FRONT', 0, 17, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1671, '130921 ', 'SUPPLY HOLDER', 0, 18, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1672, '117983 ', 'GEAR, Supply', 0, 19, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1673, '0999073006 ', 'SCREW, Flanged Hd M3 x 6', 0, 20, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1674, 'PB00700220', 'SCREW, PAN HEAD, PHILLIPS', 0, 22, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1675, '130908  ', 'SUPPLY COVER, Upper', 0, 23, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1676, '130905  ', 'HINGED COVER', 0, 24, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1677, '130907 ', 'TRIM - FRONT', 0, 25, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1678, '130904  ', 'FRONT COVER ', 0, 29, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1679, '128085  ', 'HOLE PLUG 1" (No Rewind Option)', 0, 30, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1680, '128084  ', 'HOLE PLUG 1.5" (No Rewind Option)', 0, 31, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1681, '130903 ', 'EXIT FASCIA', 0, 32, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1682, '130910 ', 'TRIM – BACK COVER ', 0, 34, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1683, '130906 ', 'WINDOW- SUPPLY', 0, 37, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637786069_Printer Assembly.PNG'),
+	(1684, '096497', 'FOOT', 0, 1, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1685, '130898', 'BASE', 0, 2, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1686, '130897', 'MAIN FRAME', 0, 3, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1687, '130734', 'SCREW, PH M5 X 12MM', 0, 4, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1688, 'PB00500557', 'WASHER-PLAIN (ROHS COMPLIANT)', 0, 5, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1689, '130466', 'SHAFT, DAMPENER', 0, 6, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1690, '130467', 'DAMPER - SUPPLY', 0, 7, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1691, '110917', 'BEARING-UPPER PIVOT', 0, 8, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1692, '100256', 'E-RING M01460', 0, 9, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1693, '130468', 'SPRING TORSION', 0, 10, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1694, 'PB00520507', 'WASHER-EXT. LOCK, M5', 0, 11, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1695, '117945', 'PIVOT BLOCK', 0, 12, 'Cutter for PVH', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1696, '0999153008', 'SCREW, Self Tap Plastite Pan Hd M3 x 8', 0, 13, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1697, '130609', 'RIBBON CABLE, 30 POS', 0, 15, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1698, '12808302', 'PIVOT FRAME LATCH, RED', 0, 16, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1699, '099907300', 'SCREW, Flanged Hd M3 x 6 ', 0, 17, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1700, '12978302BA', 'CPU ENGINE BD ASSY (Standard Features)', 0, 18, 'PRINTER ASSEMBLY  ', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1701, '12978302EF', 'CPU ENGINE BD ASSY (Extended Features)', 0, 18, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1702, '099983008', 'SCREW, Sems M3 x 8', 0, 19, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1703, '130476', 'BRACKET-HEAD OPEN SENSOR ', 0, 20, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1704, '130528', 'SENSOR, HEAD OPEN', 0, 21, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1705, '099973006', 'SCREW, PHILLIPS FLANGED HEAD M3 X 6 ', 0, 22, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1706, '128110', 'HEAD OPEN SENSOR BRACKET', 0, 23, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1707, '93986', 'SCREW-PHILLIPS PAN HEAD ', 0, 24, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1708, '129716', 'HARNESS, GND STRAP, RFID ATTENUATOR ASSEMBLY', 0, 25, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1709, '130607', 'PLATEN DRIVE MOTOR ASSY', 0, 26, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1710, '0999084012', 'SCREW, Sems Pan Hd w/Lockwasher M4 x 12', 0, 27, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1711, '128940', 'POWER SUPPLY, UNIV 24VDC, 140W, INT AC, INLET & SWITCH, BA & EF MODEL POWER SUPPLY', 0, 33, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1712, '130484', 'CUTTER FRAME SUPPORT ASSY, (printer model ADTP1EF03 ONLY)', 0, 35, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1713, '0999074008', 'SCREW, Phil Flanged Hd, M4 x 8', 0, 34, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1714, '129792', 'BRACKET – KNIFE-STACKER MTG,  (printer model ADTP1EF03 ONLY)', 0, 36, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1715, '130484', 'CUTTER FRAME SUPPORT ASSY, (printer model ADTP1EF03 ONLY)', 0, 35, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637938855_Printer Sub Assembly.PNG'),
+	(1716, '11796140  ', 'MONARCH CORE 4.33"', 0, 1, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1717, '0999083012  ', 'SCREW W/Lockwasher, M3 x 12', 0, 2, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1718, '113744  ', 'ADJUSTMENT ECCENTRIC', 0, 3, 'PRINTER SUBASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1719, '113742  ', 'ADJUSTMENT SUPPORT', 0, 4, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1720, '117948  ', 'RIBBON ROLLER', 0, 5, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1721, '128072  ', 'ROLLER SHAFT, Skew', 0, 6, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1722, '100226  ', 'E-RING, E-6', 0, 7, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1723, '11796002  ', 'RIBBON SPINDLE', 0, 8, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1724, '126982  ', 'RIBBON SHAFT', 0, 9, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1725, '117967  ', 'SCREW, M2.6 x 5', 0, 10, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1726, '118006 ', 'CAP, EMITTER ', 0, 11, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1727, '126534 ', 'PWA, I/R EMITTER BOARD', 0, 12, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1728, '130956 ', 'HARNESS, OVER / APERTURE POU', 0, 13, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1729, '130472  ', 'UPPER GUIDE ASSEMBLY', 0, 14, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1730, '129554 ', 'PIVOT FRAME ASSEMBLY', 0, 15, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1731, '117903  ', 'BALL BEARING', 0, 16, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1732, '117953  ', 'RIBBON GEAR, 42T', 0, 17, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1733, '12807901  ', 'GEAR, Ribbon 54T-15T', 0, 18, 'PIVOT FRAME ASSEMBLY', 1, 'picturepart/1637943381_Pivot Frame Assembly.PNG'),
+	(1735, '05581118KDR', 'Power Supply Generico ATX P4', 0, 0, 'RFID Reader Assembly', 7, 'picturepart/1638299873_Power Supply Generico ATX P4.jpeg');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 
 -- Dumping structure for table macfilter.locators

@@ -134,13 +134,13 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsOne-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                     <div class="accordion-body">
-                      Click Machines Items on the left menu, the item page will be shown with two top button blue and green. the blue button is for create a new item and the green is for export these items as an excel file.
-                      Click on the Create a New Item buttom a modal will be shown to create a new item.
-                      In the picture field, if you will be save more than one item with the same image, you have to choose this image in the first item inserted and then the system will take the picture automatically in the others insert.
+                      Click Machines Items on the left menu, the item page will show with two top button blue and green. the blue button is for create a new item and the green is for export these items as an excel file.
+                      Click on the Create a New Item buttom a modal will show to create a new item.
+                      In the picture field, if you will save more than one item with the same image, you have to choose this image in the first item inserted and then the system will take the picture automatically in the others insert.
                        <br>
                       Note: Only the price field who can be empty after the condition of the image field. 
                       <br>
-                      After created an item it will be listed in a table list in the principal item page, this table has 4 repeated buttons in each row:
+                      After created an item it will list in a table list in the principal item page, this table has 4 repeated buttons in each row:
                       <br>
                       1- View Picture Button: To show an image of this item<br>
                       2- Edit Item Button:  To edit the informations of this item<br>
@@ -158,14 +158,14 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsOne-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                     <div class="accordion-body">
-                     In the item table list click on the second button of the information requiere, 
-                     the same inserted modal will be shown with all the field completed except the image 
-                     field who can be left empty if you do not will update the image.<br>
+                     In the item table list click on the second button of the information require, 
+                     the same inserted modal will show with all the field completed except the image 
+                     field who can be left empty if you will not update the image.<br>
                      <br>
                      Then if you want to update the machine list you have to click on the yellow button (Refresh Machine List) 
                      in the bottom of the modal.<br>
                      <br>
-                     After all click on the Create Item button, the information edited will be update in the table list with success.
+                     After all click on the Create Item button, the information edited will update in the table list with success.
                     </div>
                   </div>
                 </div>
@@ -179,9 +179,8 @@ $manage=$_SESSION['usuario'];
                   <div id="faqsOne-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                     <div class="accordion-body">
                         In the item table list click on the third button of the information require, 
-                        a notification will be shown to confirm your action as ask you if really you want to delete this information. <br><br>
-                        If you choose OK the information will be deleted with success else if you choose cancel the information will do not deleted.<br><br>
-                        And automativally the item table list will be update.
+                        a notification will show to confirm your action as request, if you really want to delete this information. <br><br>
+                        If you choose OK the information will delete permanently.
                     </div>
                   </div>
                 </div>
@@ -194,7 +193,7 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsOne-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-1">
                     <div class="accordion-body">
-                       On clicking on the Export Items File button on the top of principal item page, 
+                       By clicking on the Export Items File button on the top of principal item page, 
                        the system will download automatically all existent item on the table as an excel file.
                     </div>
                   </div>
@@ -213,7 +212,7 @@ $manage=$_SESSION['usuario'];
                     first combo list before you type your search in the tird textfield. <br><br>
                     The second combo list is optional, you can use it if you want to search an item for a specific machine.<br><br>
                     If you choosen't an option in the first combo list when you type your search a warning message will 
-                    be shown on the top of the principal item page like this: 
+                    shown on the top of the principal item page like this: 
                     "Oups! Please choose an option in the first top List and continue write your search in the search textfield."<br><br>
                     For this reason the search will not return values. the informations require will not show in the item table list .
                     </div>
@@ -244,14 +243,14 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsTwo-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
                     <div class="accordion-body">
-                      Click Machines Errors on the left menu, the error page will be shown with two top button blue and green. the blue button is for add a new error and the green is for export these Errors as an excel file.
-                      Click on the Add Error buttom a modal will be shown to add a new error.
+                      Click Machines Errors on the left menu, the error page will show with two top button blue and green. the blue button is for add a new error and the green is for export these Errors as an excel file.
+                      Click on the Add Error buttom a modal will show to add a new error.
                        <br>
                       Note: Only the video field who can be empty if you don't have any video of this error to upload. 
                       <br>
-                      After added an error it will be listed in a table list in the principal error page, this table has 3 repeated buttons in each row:
+                      After added an error it will listed in a table list in the principal error page, this table has 3 repeated buttons in each row:
                       <br>
-                      1- Play Video Button: To play a video who can show you how can you fix this problem.<br>
+                      1- Play Video Button: To play a video who can show you how to fix this problem.<br>
                       2- Edit Error Button:  To edit the informations of this error<br>
                       3- Delete Error button: To Delete an Error<br>
                     </div>
@@ -266,14 +265,14 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsTwo-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
                     <div class="accordion-body">
-                     In the error table list click on the second button of the information requiere, 
-                     the same inserted modal will be shown with all the field completed except the video 
-                     field who can be left empty if you do not will update the video.<br>
+                     In the error table list click on the second button of the information require, 
+                     the same inserted modal will show with all the field completed except the video 
+                     field who can be left empty if you will not update the video.<br>
                      <br>
                      Then if you want to update the machine list you have to click on the yellow button (Refresh Machine List) 
                      in the bottom of the modal.<br>
                      <br>
-                     After all click on the Add Error button, the information edited will be update in the table list with success.
+                     After all click on the Add Error button, the information edited will update in the table list with success.
                     </div>
                   </div>
                 </div>
@@ -287,9 +286,8 @@ $manage=$_SESSION['usuario'];
                   <div id="faqsTwo-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
                     <div class="accordion-body">
                         In the error table list click on the third button of the information require, 
-                        a notification will be shown to confirm your action as ask you if really you want to delete this information. <br><br>
-                        If you choose OK the information will be deleted with success else if you choose cancel the information will do not deleted.<br><br>
-                        And automativally the error table list will be update.
+                        a notification will show to confirm your action as request, if you really want to delete this information. <br><br>
+                        If you choose OK the information will delete permanently.
                     </div>
                   </div>
                 </div>
@@ -302,7 +300,7 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsTwo-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-2">
                     <div class="accordion-body">
-                       On clicking on the Export Errors File button on the top of principal error page, 
+                       By clicking on the Export Errors File button on the top of principal error page, 
                        the system will download automatically all existent error on the table as an excel file.
                     </div>
                   </div>
@@ -321,7 +319,7 @@ $manage=$_SESSION['usuario'];
                     first combo list before you type your search in the tird textfield. <br><br>
                     The second combo list is optional, you can use it if you want to search an error for a specific machine.<br><br>
                     If you choosen't an option in the first combo list when you type your search a warning message will 
-                    be shown on the top of the principal error page like this: 
+                    shown on the top of the principal error page like this: 
                     "Oups! Please choose an option in the first top List and continue write your search in the search textfield."<br><br>
                     For this reason the search will not return values. the informations require will not show in the error table list .
                     </div>
@@ -348,18 +346,18 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsThree-1" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
                     <div class="accordion-body">
-                      Click Items Inventary on the left menu, the Inventary page will be shown with two top button blue and green. the blue button is for add a new item at the inventary and the green is for export the inventary as an excel file.
-                      Click on the Add item to Inventary buttom a modal will be shown to add a new error. <br>
+                      Click Items Inventary on the left menu, the Inventary page will show with two top button blue and green. the blue button is for add a new item at the inventary and the green is for export the inventary as an excel file.
+                      Click on the Add item to Inventary buttom a modal will show to add a new error. <br>
                       A Item Number Filter exist to search quickly a item number because in the Item Number list there are all items so for that
                       the Item Number Filter is necesary to help us find quickly the item number.
                        <br><br>
-                      After added an item to the inventary it will be listed in a table list in the principal inventary page, this table has 3 repeated buttons in each row:
+                      After added an item to the inventary it will listed in a table list in the principal inventary page, this table has 3 repeated buttons in each row:
                       <br>
                       1- View Picture Button: To show an image of this item<br>
                       2- Edit Item Button:  To edit the informations of this item<br>
-                      3- Update Quantity button: To uptdate the quantity of this item<br>
+                      3- Update Quantity button: To update the quantity of this item<br>
                       We can add Item to the inventary in the principal item page by clicking on the fourth blue button, the information require 
-                      will be added to the inventary directly.
+                      will added to the inventary directly.
                     </div>
                   </div>
                 </div>
@@ -372,14 +370,14 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsThree-2" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
                     <div class="accordion-body">
-                     In the inventary table list click on the second button of the information requiere, 
-                     the same inserted modal will be shown with all the field completed except the Item Number Filter
-                     who can be left empty if you already select your item numbre int the Item Number textfield.<br>
+                     In the inventary table list click on the second button of the information require, 
+                     the same inserted modal will show with all the field completed except the Item Number Filter
+                     who can be left empty if you already select your item number in the Item Number textfield.<br>
                      <br>
                      Then if you want to update the item number list you have to click on the yellow button (Refresh item Number List) 
                      in the bottom of the modal.<br>
                      <br>
-                     After all click on the Add Item button, the information edited will be update in the table list with success.
+                     After all click on the Add Item button, the information edited will update in the table list with success.
                     </div>
                   </div>
                 </div>
@@ -393,10 +391,10 @@ $manage=$_SESSION['usuario'];
                   <div id="faqsThree-3" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
                     <div class="accordion-body">
                        In the inventary table list click on the third button of the information require, 
-                        a modal will be shown with all the field completed except the last textfield. <br><br>
+                        a modal will show with all the field completed except the last textfield. <br><br>
                          The last textfield is a dynamic textfield because it works according to action textfields.
                          If we want to reduce the quantity of an item we only have to choose Reduce Quantity 
-                         in the action textfield then the last textfield will be formatted to reduce the quantity 
+                         in the action textfield then the last textfield will format to reduce the quantity 
                          even if we want to increase the quantity we only have to choose Add Quantity. 
                     </div>
                   </div>
@@ -410,7 +408,7 @@ $manage=$_SESSION['usuario'];
                   </h2>
                   <div id="faqsThree-4" class="accordion-collapse collapse" data-bs-parent="#faq-group-3">
                     <div class="accordion-body">
-                       On clicking on the Export Inventary File button on the top of principal Inventary page, 
+                       By clicking on the Export Inventary File button on the top of principal Inventary page, 
                        the system will download automatically all existent item on the table as an excel file.
                     </div>
                   </div>
@@ -429,7 +427,7 @@ $manage=$_SESSION['usuario'];
                     first combo list before you type your search in the tird textfield. <br><br>
                     The second combo list is optional, you can use it if you want to search an item for a specific machine.<br><br>
                     If you choosen't an option in the first combo list when you type your search a warning message will 
-                    be shown on the top of the principal error page like this: 
+                     show on the top of the principal error page like this: 
                     "Oups! Please choose an option in the first top List and continue write your search in the search textfield."<br><br>
                     For this reason the search will not return values. the informations require will not show in the inventary table list .
                     </div>
