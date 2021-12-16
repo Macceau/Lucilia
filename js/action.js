@@ -317,15 +317,16 @@ $(document).ready(function(e){
                       <td>${rep.cause}</td>
                       <td>${rep.corrective}</td>
                       <td>
-                      <button class="btn btn-warning" id="play" data-bs-toggle="modal" data-bs-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
-                      <i class="bi bi-play"></i>
-                       </button>
-                       <button class="btn btn-success" id="editerrores" data-bs-toggle="modal" data-bs-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
-                              <i class="bi bi-pencil"></i>
-                          </button>
-                          <button class="btn btn-danger" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
-                              <i class="bi bi-trash"></i>
-                          </button>
+                      <div class="table-data-feature">
+                              <button class="btn btn-warning" id="play" data-bs-toggle="modal" data-bs-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
+                                <i class="bi bi-play"></i>
+                              </button>
+                              <button class="btn btn-success" id="editerrores" data-bs-toggle="modal" data-bs-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                              </button>
+                              <button class="btn btn-danger" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
+                                  <i class="bi bi-trash"></i>
+                              </button>
                           </div>
                       </td>
                     </tr>
@@ -453,10 +454,10 @@ $(document).ready(function(e){
                   <td>${rep.corrective}</td>
                   <td>
                       <div class="table-data-feature">
-                      <button class="btn btn-warning" id="play" data-toggle="modal" data-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
+                      <button class="btn btn-warning" id="play" data-bs-toggle="modal" data-bs-target="#largeModalv" data-toggle="tooltip" data-placement="top" title="Play Video">
                       <i class="bi bi-play"></i>
-                       </button>
-                       <button class="btn btn-success" id="editerrores" data-toggle="modal" data-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
+                      </button>
+                      <button class="btn btn-success" id="editerrores" data-bs-toggle="modal" data-bs-target="#largeModals" data-toggle="tooltip" data-placement="top" title="Edit">
                               <i class="bi bi-pencil"></i>
                           </button>
                           <button class="btn btn-danger" id="deleteerrores" data-toggle="tooltip" data-placement="top" title="Delete">
